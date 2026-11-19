@@ -98,7 +98,7 @@ const birdAnswers = ["Gallina", "Pato", "Ñandú", "Pingüino", "Ganso", "Paloma
 const birdRound = {
   rule: "Identificá los animales que son aves",
   correct: birdAnswers,
-  other: [...mammalRound.correct, ...mammalRound.other, "Perro", "Gato"]
+  other: [...mammalRound.correct, ...mammalRound.other]
     .filter(animal => !birdAnswers.includes(animal)),
   tip: "Las aves tienen plumas. El ñandú y el pingüino también son aves, aunque no vuelan."
 };

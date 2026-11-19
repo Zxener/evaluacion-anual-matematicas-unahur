@@ -44,7 +44,7 @@ main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px 
 <div id="playfield" hidden>
 <p class="muted" id="controls"></p>
 <p class="rule" id="rule"></p><div class="stats"><span>Ronda <b id="round"></b></span><span>Puntos <b id="score"></b></span><span>Vidas <b id="lives"></b></span><span>Restan <b id="left"></b></span></div>
-<div class="board" id="board" role="group" aria-label="Casillas numéricas" aria-describedby="controls rule"></div>
+<div class="board" id="board" role="group" aria-label="Casillas del tablero" aria-describedby="controls rule"></div>
 <div id="arcade-controls" class="actions controls" aria-label="Controles táctiles"><button class="btn secondary" data-move="left" aria-label="Izquierda">←</button><button class="btn secondary" data-move="up" aria-label="Arriba">↑</button><button class="btn secondary" data-move="down" aria-label="Abajo">↓</button><button class="btn secondary" data-move="right" aria-label="Derecha">→</button><button class="btn" id="collect">Recolectar</button><button class="btn secondary" id="pause">Pausar</button></div>
 <p class="message" id="feedback" role="status"></p><div class="actions"><button id="next" class="btn" hidden>Siguiente ronda</button><button id="restart" class="btn secondary">Reiniciar partida</button></div></div></section>
 </div></div></main>
@@ -275,10 +275,10 @@ board.addEventListener("keydown", event => {
   }
   const columns = 6;
   const moves = {ArrowLeft: -1, ArrowRight: 1, ArrowUp: -columns, ArrowDown: columns};
-  const move = moves[event.key];
-  if (move === undefined) return;
+  const step = moves[event.key];
+  if (step === undefined) return;
   event.preventDefault();
-  const destination = (cursor + move + cells.length) % cells.length;
+  const destination = (cursor + step + cells.length) % cells.length;
   cells[destination].focus();
 });
 function restart(focus) {

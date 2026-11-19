@@ -10,7 +10,7 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,sans-serif}a{color:var(--lime);text-underline-offset:.25em}button,input{font:inherit}button,a,input{touch-action:manipulation}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--lime);outline-offset:4px}[hidden]{display:none!important}
 .shell{width:min(1150px,calc(100% - 42px));margin:auto}.top{border-bottom:1px solid var(--line)}.top .shell{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font:bold 1.15rem var(--mono);letter-spacing:.12em;color:var(--lime)}.brand span{color:var(--purple);margin-right:.7em}.top small{color:var(--muted);text-align:right}
 .hero{background:radial-gradient(ellipse at 85% 25%,#322364,transparent 58%),linear-gradient(120deg,#171433,#11152b);border-bottom:1px solid var(--line)}.hero .shell{padding:clamp(48px,8vw,112px) 0;display:grid;grid-template-columns:1fr .52fr;align-items:center;gap:32px}.eyebrow,.kicker{font:bold .88rem var(--mono);letter-spacing:.13em;color:var(--lime);text-transform:uppercase}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(3rem,8vw,7rem);line-height:.87;letter-spacing:-.085em;margin:.22em 0 .25em}h1 span{display:block;color:var(--purple)}.hero p{color:var(--muted);margin-bottom:.3em}.hero .author{color:var(--ink);margin-top:1.35em}.art{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #7253b5;transform:rotate(-6deg);box-shadow:10px 12px #20163b;font:bold clamp(1rem,3vw,2.4rem) var(--mono);color:#bba5ea;margin:10px}.art span{display:grid;place-items:center;aspect-ratio:1.25;border:1px solid #543b88;background:#1c2147}.art .lit{background:var(--lime);color:#18201e}
-main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:24px;align-items:start}.panel{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:clamp(20px,4vw,36px)}nav.panel{padding:20px;position:sticky;top:20px}nav ol{margin:10px 0 0;padding-left:23px;color:var(--purple)}nav li+li{margin-top:8px}nav a{color:var(--ink)}section+section{margin-top:20px}section{scroll-margin-top:20px}h2{font-size:clamp(1.7rem,4vw,2.8rem);line-height:1.1;letter-spacing:-.04em;margin:.15em 0 .5em}.muted,.hint{color:var(--muted)}.hint{margin:.8em 0 0}.actions,.stats{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:9px;border:1px solid transparent;padding:8px 15px;background:var(--lime);color:#17221a;font-weight:750;text-decoration:none}.secondary{background:#252044;color:var(--ink);border-color:#625494}.gate{max-width:670px;margin:auto}.gate form{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}.gate label{width:100%;font-weight:700}.gate input{flex:1;min-width:130px;background:#0e1024;color:var(--ink);border:1px solid #76699f;border-radius:8px;padding:10px}.message{min-height:1.55em;margin:.65em 0 0;color:var(--lime)}.stats{justify-content:space-between;font:bold .88rem var(--mono);color:var(--muted);margin:14px 0}.stats b{color:var(--ink)}.board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;padding:8px;border:1px solid #8064ca;border-radius:10px;background:#111a46}.cell{min-width:0;min-height:44px;aspect-ratio:1.46;border:1px solid #7656b5;background:#22245b;color:var(--ink);border-radius:5px;font:bold clamp(.85rem,2.6vw,1.35rem) var(--mono);padding:0}.cell:hover:not([aria-disabled=true]){background:#3b3077}.cell.good,.cell.good:hover{background:#273e32;border-color:var(--lime);color:var(--lime)}.cell.bad{background:#54234a;border-color:#fd9cce;color:#ffd1ee}.cell[aria-disabled=true]{cursor:default}.rule{margin:0;font-weight:750;color:var(--lime)}details{padding:12px 0;border-top:1px solid var(--line)}details p{margin:.75em 0 0;color:var(--muted)}summary{cursor:pointer;color:var(--ink);font-weight:650}footer{border-top:1px solid var(--line);color:var(--muted);padding:22px 0}code,kbd{font-family:var(--mono);color:var(--lime)}
+main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:24px;align-items:start}.panel{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:clamp(20px,4vw,36px)}nav.panel{padding:20px;position:sticky;top:20px}nav ol{margin:10px 0 0;padding-left:23px;color:var(--purple)}nav li+li{margin-top:8px}nav a{color:var(--ink)}section+section{margin-top:20px}section{scroll-margin-top:20px}h2{font-size:clamp(1.7rem,4vw,2.8rem);line-height:1.1;letter-spacing:-.04em;margin:.15em 0 .5em}.muted,.hint{color:var(--muted)}.hint{margin:.8em 0 0}.actions,.stats{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:9px;border:1px solid transparent;padding:8px 15px;background:var(--lime);color:#17221a;font-weight:750;text-decoration:none}.secondary{background:#252044;color:var(--ink);border-color:#625494}.gate{max-width:670px;margin:auto}.gate form{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}.gate label{width:100%;font-weight:700}.gate input{flex:1;min-width:130px;background:#0e1024;color:var(--ink);border:1px solid #76699f;border-radius:8px;padding:10px}.message{min-height:1.55em;margin:.65em 0 0;color:var(--lime)}.stats{justify-content:space-between;font:bold .88rem var(--mono);color:var(--muted);margin:14px 0}.stats b{color:var(--ink)}.board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;padding:8px;border:1px solid #8064ca;border-radius:10px;background:#111a46}.cell{min-width:0;min-height:44px;aspect-ratio:1.46;border:1px solid #7656b5;background:#22245b;color:var(--ink);border-radius:5px;font:bold clamp(.85rem,2.6vw,1.35rem) var(--mono);padding:0}.board.words{grid-template-columns:repeat(3,minmax(0,1fr))}.words .cell{aspect-ratio:auto;min-height:62px;padding:6px;overflow-wrap:anywhere;font:700 clamp(.78rem,2vw,1rem) system-ui}.mode[aria-pressed=true]{background:var(--lime);color:#17221a}.cell:hover:not([aria-disabled=true]){background:#3b3077}.cell.good,.cell.good:hover{background:#273e32;border-color:var(--lime);color:var(--lime)}.cell.bad{background:#54234a;border-color:#fd9cce;color:#ffd1ee}.cell[aria-disabled=true]{cursor:default}.rule{margin:0;font-weight:750;color:var(--lime)}details{padding:12px 0;border-top:1px solid var(--line)}details p{margin:.75em 0 0;color:var(--muted)}summary{cursor:pointer;color:var(--ink);font-weight:650}footer{border-top:1px solid var(--line);color:var(--muted);padding:22px 0}code,kbd{font-family:var(--mono);color:var(--lime)}
 @media(max-width:720px){.layout{grid-template-columns:1fr}nav.panel{position:static}.hero .shell{gap:12px;grid-template-columns:1fr .38fr}.art{margin:0}.shell{width:calc(100% - 28px)}}@media(max-width:390px){.hero .shell{grid-template-columns:1fr}.art{display:none}.panel{padding:15px}.board{gap:3px;padding:4px}}@media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}}
 </style>
 </head>
@@ -37,7 +37,7 @@ main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px 
 <details><summary>Múltiplos de 5</summary><p>Terminan en 0 o en 5. Ejemplo: 45 = 5 × 9.</p></details>
 <details><summary>Múltiplos de 19</summary><p>Usá la tabla o dividí por 19. Los primeros positivos son 19, 38, 57, 76 y 95.</p></details>
 <details><summary>Aplicación en el vivero</summary><p>Si cada bandeja tiene 19 cavidades y hay 95 plantines, llenás 5 bandejas completas. En cambio, 100 plantines llenan 5 bandejas y sobran 5.</p></details></section>
-<section class="panel" id="practica"><div class="kicker">Juego de práctica</div><h2>Tablero de múltiplos</h2><p class="muted" id="controls">Tocá las casillas correctas o entrá al tablero con Tab, movete con las flechas y marcá con Espacio o Enter.</p>
+<section class="panel" id="practica"><div class="kicker">Juego de práctica</div><h2>Elegí qué practicar</h2><div class="actions" role="group" aria-label="Tema del tablero"><button id="zoo" class="btn secondary mode" aria-pressed="true">Zoología y Sanidad Animal</button><button id="math" class="btn secondary mode" aria-pressed="false">Múltiplos</button></div><p class="hint" id="topic"></p><p class="muted" id="controls">Tocá las casillas correctas o entrá al tablero con Tab, movete con las flechas y marcá con Espacio o Enter.</p>
 <p class="rule" id="rule"></p><div class="stats"><span>Ronda <b id="round"></b></span><span>Puntos <b id="score"></b></span><span>Vidas <b id="lives"></b></span><span>Restan <b id="left"></b></span></div>
 <div class="board" id="board" role="group" aria-label="Casillas numéricas" aria-describedby="controls rule"></div>
 <p class="message" id="feedback" role="status"></p><div class="actions"><button id="next" class="btn" hidden>Siguiente ronda</button><button id="restart" class="btn secondary">Reiniciar partida</button></div></section>
@@ -67,6 +67,41 @@ byId("login").addEventListener("submit", event => {
   enter(true);
 });
 const divisors = [2, 5, 19];
+const zoology = [
+  {
+    rule: "Identificá los animales que son mamíferos",
+    correct: ["Vaca", "Caballo", "Oveja", "Cabra"],
+    other: ["Gallina", "Pato", "Rana", "Tortuga", "Trucha", "Abeja", "Caracol", "Lombriz"],
+    tip: "Los mamíferos alimentan a sus crías con leche."
+  },
+  {
+    rule: "Identificá los organismos que pueden vivir como parásitos externos",
+    correct: ["Pulga", "Garrapata", "Piojo", "Ácaro de la sarna"],
+    other: ["Tenia", "Lombriz intestinal", "Mariposa", "Libélula", "Abeja", "Caracol", "Lombriz de tierra", "Ciempiés"],
+    tip: "Un ectoparásito vive en la superficie del hospedador, por ejemplo en la piel o entre el pelaje."
+  },
+  {
+    rule: "Identificá cambios que conviene registrar durante la observación del animal",
+    correct: ["Menos apetito", "Tos repetida", "Dificultad para caminar", "Menos actividad habitual"],
+    other: ["Nombre del establecimiento", "Número del corral", "Precio del alimento", "Marca del bebedero", "Color del portón", "Tamaño del comedero", "Modelo del tractor", "Material de la cerca"],
+    tip: "Registrá qué cambió y desde cuándo. Un signo aislado no basta para determinar su causa."
+  }
+];
+let mode = "zoo";
+function mathRound(divisor) {
+  const numbers = Array.from({length: divisor * 12 + 24}, (_, i) => i + 1);
+  return {
+    rule: "Marcá los múltiplos de " + divisor,
+    correct: shuffle(numbers.filter(n => n % divisor === 0)).slice(0, 8),
+    other: shuffle(numbers.filter(n => n % divisor !== 0)).slice(0, 16),
+    explanation(n) {
+      const remainder = n % divisor;
+      return remainder === 0
+        ? n + " = " + divisor + " × " + (n / divisor) + "."
+        : n + " deja resto " + remainder + " al dividir por " + divisor + ".";
+    }
+  };
+}
 const board = byId("board");
 const feedback = byId("feedback");
 const next = byId("next");
@@ -85,16 +120,15 @@ function shuffle(items) {
   return items;
 }
 function startRound(focus) {
-  const divisor = divisors[round];
-  const numbers = Array.from({length: divisor * 12 + 24}, (_, i) => i + 1);
-  const correct = shuffle(numbers.filter(n => n % divisor === 0)).slice(0, 8);
-  const other = shuffle(numbers.filter(n => n % divisor !== 0)).slice(0, 16);
+  const challenge = mode === "zoo" ? zoology[round] : mathRound(divisors[round]);
+  const {correct, other} = challenge;
   remaining = correct.length;
+  board.classList.toggle("words", mode === "zoo");
   cursor = 0;
   active = true;
   next.hidden = true;
   feedback.textContent = "";
-  byId("rule").textContent = "Marcá los múltiplos de " + divisor;
+  byId("rule").textContent = challenge.rule;
   cells = shuffle([...correct, ...other]).map((number, index) => {
     const cell = document.createElement("button");
     cell.type = "button";
@@ -106,7 +140,7 @@ function startRound(focus) {
       cursor = index;
       cell.tabIndex = 0;
     });
-    cell.addEventListener("click", () => mark(cell, number, divisor));
+    cell.addEventListener("click", () => mark(cell, number, correct.includes(number), challenge));
     return cell;
   });
   board.replaceChildren(...cells);
@@ -119,31 +153,32 @@ function finish(message, advance) {
   for (const cell of cells) cell.setAttribute("aria-disabled", "true");
   next.hidden = !advance;
 }
-function mark(cell, n, divisor) {
+function mark(cell, n, correct, challenge) {
   if (!active || cell.hasAttribute("aria-disabled")) return;
   cell.setAttribute("aria-disabled", "true");
-  const remainder = n % divisor;
-  if (remainder === 0) {
+  const explanation = challenge.explanation ? challenge.explanation(n) : challenge.tip;
+  if (correct) {
     cell.classList.add("good");
     cell.setAttribute("aria-label", n + ", correcto");
     score += 10;
     remaining--;
-    feedback.textContent = n + " = " + divisor + " × " + (n / divisor) + ". ¡Bien!";
+    feedback.textContent = "¡Bien! " + explanation;
   } else {
     cell.classList.add("bad");
     cell.setAttribute("aria-label", n + ", incorrecto");
     lives--;
-    feedback.textContent = n + " deja resto " + remainder + " al dividir por " + divisor + ".";
+    feedback.textContent = "Esa casilla no cumple la consigna. " + explanation;
   }
   update();
   if (!lives) finish(feedback.textContent + " Fin de partida. Puntaje: " + score + ".", false);
   if (!remaining) {
     const final = round === divisors.length - 1;
-    finish(final ? "¡Completaste las tres rondas! Puntaje: " + score + "." : "¡Ronda completa! Podés avanzar.", !final);
+    finish(final ? "¡Completaste las tres rondas! Puntaje: " + score + "." : "¡Ronda completa! Podés avanzar. " + explanation, !final);
   }
 }
 board.addEventListener("keydown", event => {
-  const moves = {ArrowLeft: -1, ArrowRight: 1, ArrowUp: -6, ArrowDown: 6};
+  const columns = mode === "zoo" ? 3 : 6;
+  const moves = {ArrowLeft: -1, ArrowRight: 1, ArrowUp: -columns, ArrowDown: columns};
   const move = moves[event.key];
   if (move === undefined) return;
   event.preventDefault();
@@ -158,7 +193,18 @@ function restart(focus) {
 }
 next.addEventListener("click", () => { round++; startRound(true); });
 byId("restart").addEventListener("click", () => restart(true));
-restart(false);
+function chooseMode(value) {
+  mode = value;
+  byId("zoo").setAttribute("aria-pressed", String(mode === "zoo"));
+  byId("math").setAttribute("aria-pressed", String(mode === "math"));
+  byId("topic").textContent = mode === "zoo"
+    ? "Tres rondas sobre mamíferos, parásitos externos y observación del animal."
+    : "Tres rondas de múltiplos de 2, 5 y 19.";
+  restart(false);
+}
+byId("zoo").addEventListener("click", () => chooseMode("zoo"));
+byId("math").addEventListener("click", () => chooseMode("math"));
+chooseMode("zoo");
 </script>
 </body>
 </html>

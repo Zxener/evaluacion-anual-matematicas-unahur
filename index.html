@@ -39,8 +39,10 @@ main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px 
 <details><summary>Múltiplos de 5</summary><p>Terminan en 0 o en 5. Ejemplo: 45 = 5 × 9.</p></details>
 <details><summary>Múltiplos de 19</summary><p>Usá la tabla o dividí por 19. Los primeros positivos son 19, 38, 57, 76 y 95.</p></details>
 <details><summary>Aplicación en el vivero</summary><p>Si cada bandeja tiene 19 cavidades y hay 95 plantines, llenás 5 bandejas completas. En cambio, 100 plantines llenan 5 bandejas y sobran 5.</p></details></section>
-<section class="panel" id="practica"><div class="kicker">Juego de práctica</div><h2>Elegí qué practicar</h2><div class="actions" role="group" aria-label="Tema del tablero"><button id="zoo" class="btn secondary mode" aria-pressed="true">Zoología y Sanidad Animal</button><button id="math" class="btn secondary mode" aria-pressed="false">Múltiplos</button></div><div id="settings" class="settings"><label for="zoo-topic">Tema del juego<select id="zoo-topic"><option value="all">Todos los temas</option><option value="animals">Clasificación de animales</option><option value="parasites">Parásitos externos</option><option value="care">Observación y cuidados</option></select></label><label for="hunter-speed">Velocidad del cazador<select id="hunter-speed"><option value="slow">Tranquila</option><option value="normal" selected>Clásica</option><option value="fast">Rápida</option></select></label></div><p class="hint" id="topic"></p>
-<div id="briefing" class="arcade"><h3>Patrulla zoológica</h3><p>Hacé clic en una casilla vecina para moverte. Hacé clic en la casilla de la exploradora para recolectar y sumar puntos si la respuesta es correcta. Una respuesta incorrecta o un choque con el cazador te cuesta una vida.</p><div class="cast"><span><i class="sprite" aria-hidden="true"></i> Exploradora</span><span><i class="sprite rival" aria-hidden="true"></i> Cazador</span></div><button type="button" class="btn" id="play">Empezar partida</button></div>
+<section class="panel" id="practica"><div class="kicker">Juego de práctica</div><h2>Elegí qué practicar</h2><div class="actions" role="group" aria-label="Tema del tablero"><button id="zoo" class="btn secondary mode" aria-pressed="true">Zoología y Sanidad Animal</button><button id="math" class="btn secondary mode" aria-pressed="false">Múltiplos</button></div><div id="settings" class="settings"><label for="zoo-topic">Tema del juego<select id="zoo-topic"><option value="all">Todos los temas</option>
+<optgroup label="Sanidad Animal"><option value="animalHealth">Sanidad Animal completa</option><option value="animals">Clasificación de animales</option><option value="parasites">Parásitos externos</option><option value="care">Observación y cuidados</option></optgroup>
+<optgroup label="Sanidad Vegetal"><option value="plantHealth">Sanidad Vegetal completa</option><option value="animalia">Animalia · filos</option><option value="arthropods">Arthropoda · clases</option><option value="insects">Insecta · órdenes</option><option value="viruses">Virus · familias</option><option value="bacteria">Bacterias · géneros</option><option value="fungi">Hongos · géneros</option><option value="oomycetes">Seudohongos · oomicetos</option><option value="diagnosis">Diagnóstico · síntomas</option></optgroup></select></label><label for="hunter-speed">Velocidad del cazador<select id="hunter-speed"><option value="slow">Tranquila</option><option value="normal" selected>Clásica</option><option value="fast">Rápida</option></select></label></div><p class="hint" id="topic"></p>
+<div id="briefing" class="arcade"><h3>Patrulla zoológica</h3><p>Elegí Sanidad Animal, Sanidad Vegetal o la campaña completa en el menú de temas.</p><p>Hacé clic en una casilla vecina para moverte. Hacé clic en la casilla de la exploradora para recolectar y sumar puntos si la respuesta es correcta. Una respuesta incorrecta o un choque con el cazador te cuesta una vida.</p><div class="cast"><span><i class="sprite" aria-hidden="true"></i> Exploradora</span><span><i class="sprite rival" aria-hidden="true"></i> Cazador</span></div><button type="button" class="btn" id="play">Empezar partida</button></div>
 <div id="playfield" hidden>
 <p class="muted" id="controls"></p>
 <p class="rule" id="rule"></p><div class="stats"><span>Ronda <b id="round"></b></span><span>Puntos <b id="score"></b></span><span>Vidas <b id="lives"></b></span><span>Restan <b id="left"></b></span></div>
@@ -118,8 +120,65 @@ const careRound = {
   ],
   tip: "Agua, alimento adecuado, refugio y un lugar limpio para descansar cubren necesidades básicas."
 };
+const plantTopics = {
+  animalia: {
+    rule: "Marcá los filos del reino Animalia",
+    correct: ["Arthropoda", "Nematoda", "Mollusca", "Annelida", "Chordata"],
+    tip: "Animalia es el reino. Arthropoda y Nematoda son dos de sus filos."
+  },
+  arthropods: {
+    rule: "Marcá las clases de artrópodos",
+    correct: ["Insecta", "Arachnida", "Chilopoda", "Diplopoda", "Malacostraca"],
+    tip: "Arthropoda es un filo. Insecta, Arachnida y Malacostraca son ejemplos de clases dentro de ese filo."
+  },
+  insects: {
+    rule: "Marcá los órdenes de la clase Insecta",
+    correct: ["Coleoptera", "Lepidoptera", "Hemiptera", "Diptera", "Thysanoptera", "Hymenoptera"],
+    tip: "Coleoptera agrupa a los escarabajos, Lepidoptera a mariposas y polillas, y Thysanoptera a los trips."
+  },
+  viruses: {
+    rule: "Marcá las familias que incluyen virus de plantas",
+    correct: ["Potyviridae", "Geminiviridae", "Bromoviridae", "Virgaviridae"],
+    tip: "El sufijo -viridae identifica el rango de familia en la clasificación de virus."
+  },
+  bacteria: {
+    rule: "Marcá los géneros de bacterias",
+    correct: ["Xanthomonas", "Pseudomonas", "Clavibacter", "Erwinia", "Pectobacterium"],
+    tip: "Las bacterias son organismos celulares procariotas. Estos cinco nombres corresponden a géneros bacterianos."
+  },
+  fungi: {
+    rule: "Marcá los géneros del reino Fungi",
+    correct: ["Fusarium", "Botrytis", "Alternaria", "Rhizoctonia", "Colletotrichum"],
+    tip: "Fusarium y Botrytis son géneros de hongos verdaderos. Phytophthora y Pythium son géneros de oomicetos."
+  },
+  oomycetes: {
+    rule: "Marcá los géneros de oomicetos",
+    correct: ["Phytophthora", "Pythium", "Albugo", "Peronospora", "Plasmopara"],
+    tip: "Los oomicetos se parecen a los hongos por su forma de crecimiento y pertenecen a otro linaje."
+  },
+  diagnosis: {
+    rule: "Marcá los síntomas que podés observar en una planta",
+    correct: ["Clorosis", "Necrosis", "Marchitez", "Mosaico", "Enanismo", "Enrollamiento foliar"],
+    tip: "Un síntoma es un cambio en la planta. Un signo es evidencia física del organismo causante, como sus esporas."
+  }
+};
+const plantReviewTerms = [
+  "Hifas visibles", "Esporas visibles", "Micelio visible", "Exudado bacteriano",
+  "Temperatura", "Humedad ambiental", "Helada", "Salinidad", "Viento", "Granizo",
+  "Textura del suelo", "pH del sustrato", "Fecha de riego", "Edad del cultivo"
+];
+const plantPool = [...Object.values(plantTopics).flatMap(level => level.correct), ...plantReviewTerms];
+const plantRounds = Object.values(plantTopics);
+const animalRounds = [mammalRound, birdRound, zoology[1], zoology[2], careRound];
+for (const level of plantRounds) {
+
+  level.other = plantPool.filter(term => !level.correct.includes(term));
+}
 const zooTopics = {
-  all: [mammalRound, birdRound, zoology[1], zoology[2], careRound],
+  all: [...animalRounds, ...plantRounds],
+  animalHealth: animalRounds,
+  plantHealth: plantRounds,
+  ...Object.fromEntries(Object.entries(plantTopics).map(([topic, level]) => [topic, [level]])),
   animals: [mammalRound, birdRound],
   parasites: [zoology[1]],
   care: [zoology[2], careRound]
@@ -240,7 +299,8 @@ function startRound(focus) {
   next.hidden = true;
   feedback.textContent = "";
   byId("rule").textContent = challenge.rule;
-  cells = shuffle([...correct, ...other]).map((number, index) => {
+  const distractors = mode === "zoo" ? shuffle([...other]).slice(0, zooColumns * zooRows - correct.length) : other;
+  cells = shuffle([...correct, ...distractors]).map((number, index) => {
     const cell = document.createElement("button");
     cell.type = "button";
     cell.className = "cell";

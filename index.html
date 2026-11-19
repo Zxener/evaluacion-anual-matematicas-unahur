@@ -41,8 +41,8 @@ main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px 
 <details><summary>Aplicación en el vivero</summary><p>Si cada bandeja tiene 19 cavidades y hay 95 plantines, llenás 5 bandejas completas. En cambio, 100 plantines llenan 5 bandejas y sobran 5.</p></details></section>
 <section class="panel" id="practica"><div class="kicker">Juego de práctica</div><h2>Elegí qué practicar</h2><div class="actions" role="group" aria-label="Tema del tablero"><button id="zoo" class="btn secondary mode" aria-pressed="true">Zoología y Sanidad Animal</button><button id="math" class="btn secondary mode" aria-pressed="false">Múltiplos</button></div><div id="settings" class="settings"><label for="zoo-topic">Tema del juego<select id="zoo-topic"><option value="all">Todos los temas</option>
 <optgroup label="Sanidad Animal"><option value="animalHealth">Sanidad Animal completa</option><option value="animals">Clasificación de animales</option><option value="parasites">Parásitos externos</option><option value="care">Observación y cuidados</option></optgroup>
-<optgroup label="Sanidad Vegetal"><option value="plantHealth">Sanidad Vegetal completa</option><option value="animalia">Animalia · filos</option><option value="arthropods">Arthropoda · clases</option><option value="insects">Insecta · órdenes</option><option value="viruses">Virus · familias</option><option value="bacteria">Bacterias · géneros</option><option value="fungi">Hongos · géneros</option><option value="oomycetes">Seudohongos · oomicetos</option><option value="diagnosis">Diagnóstico · síntomas</option></optgroup></select></label><label for="hunter-speed">Velocidad del cazador<select id="hunter-speed"><option value="slow">Tranquila</option><option value="normal" selected>Clásica</option><option value="fast">Rápida</option></select></label></div><p class="hint" id="topic"></p>
-<div id="briefing" class="arcade"><h3>Patrulla zoológica</h3><p>Elegí Sanidad Animal, Sanidad Vegetal o la campaña completa en el menú de temas.</p><p>Hacé clic en una casilla vecina para moverte. Hacé clic en la casilla de la exploradora para recolectar y sumar puntos si la respuesta es correcta. Una respuesta incorrecta o un choque con el cazador te cuesta una vida.</p><div class="cast"><span><i class="sprite" aria-hidden="true"></i> Exploradora</span><span><i class="sprite rival" aria-hidden="true"></i> Cazador</span></div><button type="button" class="btn" id="play">Empezar partida</button></div>
+<optgroup label="Sanidad Vegetal"><option value="plantHealth">Sanidad Vegetal completa</option><option value="animalia">Animalia · filos</option><option value="arthropods">Arthropoda · clases</option><option value="insects">Insecta · órdenes</option><option value="viruses">Virus · familias</option><option value="bacteria">Bacterias · géneros</option><option value="fungi">Hongos · géneros</option><option value="oomycetes">Seudohongos · oomicetos</option><option value="diagnosis">Diagnóstico · síntomas</option><option value="chartTaxonomy">Taxonomía de la lámina</option><option value="diseaseMatch">Relacionar organismo y enfermedad</option></optgroup></select></label><label for="hunter-speed">Velocidad del cazador<select id="hunter-speed"><option value="slow">Tranquila</option><option value="normal" selected>Clásica</option><option value="fast">Rápida</option></select></label></div><p class="hint" id="topic"></p>
+<div id="briefing" class="arcade"><h3>Patrulla zoológica</h3><p>Elegí Sanidad Animal, Sanidad Vegetal o la campaña completa en el menú de temas.</p><p>Hacé un clic en la respuesta que elegís, aunque esté lejos. La exploradora se mueve y la marca al llegar. Una respuesta incorrecta o un choque con el cazador te cuesta una vida.</p><div class="cast"><span><i class="sprite" aria-hidden="true"></i> Exploradora</span><span><i class="sprite rival" aria-hidden="true"></i> Cazador</span></div><button type="button" class="btn" id="play">Empezar partida</button></div>
 <div id="playfield" hidden>
 <p class="muted" id="controls"></p>
 <p class="rule" id="rule"></p><div class="stats"><span>Ronda <b id="round"></b></span><span>Puntos <b id="score"></b></span><span>Vidas <b id="lives"></b></span><span>Restan <b id="left"></b></span></div>
@@ -167,17 +167,66 @@ const plantReviewTerms = [
   "Temperatura", "Humedad ambiental", "Helada", "Salinidad", "Viento", "Granizo",
   "Textura del suelo", "pH del sustrato", "Fecha de riego", "Edad del cultivo"
 ];
-const plantPool = [...Object.values(plantTopics).flatMap(level => level.correct), ...plantReviewTerms];
-const plantRounds = Object.values(plantTopics);
+const chartRounds = [
+  {
+    rule: "Según la lámina, marcá los tres reinos que aparecen",
+    correct: ["Protozoa", "Chromista", "Fungi"],
+    tip: "La lámina presenta Protozoa, Chromista y Fungi. Es un esquema de estudio que incluye categorías históricas."
+  },
+  {
+    rule: "Según la lámina, marcá las divisiones de Protozoa y Chromista",
+    correct: ["Plasmodiophoromycota", "Oomycota"],
+    tip: "En la lámina, Plasmodiophoromycota figura bajo Protozoa y Oomycota bajo Chromista. Los nombres y rangos pueden variar según la clasificación."
+  },
+  {
+    rule: "Según la lámina, marcá las cuatro divisiones del reino Fungi",
+    correct: ["Chitridiomycota", "Zigomycota", "Ascomycota", "Basidiomycota"],
+    tip: "La lámina escribe Chitridiomycota y Zigomycota. También vas a encontrar Chytridiomycota y Zygomycota. Zygomycota es un agrupamiento histórico."
+  },
+  {
+    rule: "Según la lámina, marcá el grupo ubicado debajo de Ascomycota",
+    correct: ["Deuteromycetes"],
+    tip: "Deuteromycetes es una categoría histórica de hongos conocidos por su fase asexual. La taxonomía moderna la trata como un agrupamiento artificial."
+  }
+];
+const diseasePairs = [
+  ["Plasmodiophora brassicae", "Hernia de las crucíferas", "Plasmodiophoromycota en la lámina"],
+  ["Plasmopara viticola", "Mildiu de la vid", "Oomycota"],
+  ["Synchytrium endobioticum", "Verruga de la papa", "Chytridiomycota"],
+  ["Rhizopus stolonifer", "Podredumbre por Rhizopus en frutilla", "Zygomycota en la clasificación histórica"],
+  ["Botrytis cinerea", "Moho gris de la frutilla", "Ascomycota; Botrytis se estudiaba por su fase asexual"],
+  ["Ustilago maydis", "Carbón común del maíz", "Basidiomycota"]
+];
+const diseaseChoices = [
+  ...diseasePairs.map(([, disease]) => disease),
+  "Roya del café", "Roya de la soja", "Roya del tallo del trigo", "Roya del ajo",
+  "Sarna del manzano", "Sarna común de la papa", "Sarna polvorienta de la papa",
+  "Sarna del peral", "Antracnosis del mango", "Antracnosis del poroto",
+  "Oídio de la vid", "Oídio del rosal", "Mosaico del tabaco", "Mosaico del pepino",
+  "Mosaico de la alfalfa", "Tizón temprano de la papa", "Tizón tardío de la papa",
+  "Tizón bacteriano del arroz", "Tizón de la hoja del maíz", "Mancha negra del rosal",
+  "Cancrosis de los cítricos", "Moniliosis del durazno", "Fuego bacteriano del peral",
+  "Carbón volador de la cebada"
+];
+const diseaseRounds = diseasePairs.map(([organism, disease, classification]) => ({
+  rule: "Buscá la enfermedad asociada con " + organism,
+  correct: [disease],
+  other: diseaseChoices.filter(choice => choice !== disease),
+  tip: organism + " causa " + disease.toLowerCase() + ". Grupo: " + classification + "."
+}));
+const plantPool = [...[...Object.values(plantTopics), ...chartRounds].flatMap(level => level.correct), ...plantReviewTerms];
+const plantRounds = [...Object.values(plantTopics), ...chartRounds];
 const animalRounds = [mammalRound, birdRound, zoology[1], zoology[2], careRound];
 for (const level of plantRounds) {
 
   level.other = plantPool.filter(term => !level.correct.includes(term));
 }
 const zooTopics = {
-  all: [...animalRounds, ...plantRounds],
+  all: [...animalRounds, ...plantRounds, ...diseaseRounds],
   animalHealth: animalRounds,
-  plantHealth: plantRounds,
+  plantHealth: [...plantRounds, ...diseaseRounds],
+  chartTaxonomy: chartRounds,
+  diseaseMatch: diseaseRounds,
   ...Object.fromEntries(Object.entries(plantTopics).map(([topic, level]) => [topic, [level]])),
   animals: [mammalRound, birdRound],
   parasites: [zoology[1]],
@@ -219,8 +268,11 @@ function showPieces() {
     cell.setAttribute("aria-label", cell.firstChild.textContent + result + position);
   });
 }
+let travelTimer;
+function cancelTravel() { clearTimeout(travelTimer); }
 function collision() {
   if (player !== enemy) return false;
+  cancelTravel();
   lives--;
   player = 0;
   enemy = zooLastCell;
@@ -230,19 +282,29 @@ function collision() {
   else finish("El cazador te alcanzó. Fin de partida. Puntaje: " + score + ".", false);
   return true;
 }
-function moveTo(index) {
-  const rows = Math.abs(Math.floor(player / zooColumns) - Math.floor(index / zooColumns));
-  const columns = Math.abs(player % zooColumns - index % zooColumns);
-  if (rows + columns !== 1) {
-    feedback.textContent = "Elegí una casilla vecina en horizontal o vertical.";
-    return;
+function travelTo(index, onArrival) {
+  cancelTravel();
+  function step() {
+    if (!active || paused) return;
+    if (player === index) {
+      onArrival();
+      return;
+    }
+    const rows = Math.floor(index / zooColumns) - Math.floor(player / zooColumns);
+    const columns = index % zooColumns - player % zooColumns;
+    player += rows ? Math.sign(rows) * zooColumns : Math.sign(columns);
+    const caught = collision();
+    showPieces();
+    if (!caught) {
+      if (player === index) onArrival();
+      else travelTimer = setTimeout(step, 90);
+    }
   }
-  player = index;
-  collision();
-  showPieces();
+  step();
 }
 function setPaused(value) {
   paused = value;
+  if (paused) cancelTravel();
   board.classList.toggle("paused", paused);
   byId("pause").textContent = paused ? "Continuar" : "Pausar";
 }
@@ -286,6 +348,7 @@ function shuffle(items) {
 }
 function roundCount() { return mode === "zoo" ? zooRounds.length : divisors.length; }
 function startRound(focus) {
+  cancelTravel();
   const challenge = mode === "zoo" ? zooRounds[round] : mathRound(divisors[round]);
   const {correct, other} = challenge;
   remaining = correct.length;
@@ -318,12 +381,13 @@ function startRound(focus) {
       cell.append(piece);
     }
     cell.addEventListener("click", () => {
+      const collect = () => mark(cell, number, correct.includes(number), challenge);
       if (mode === "zoo") {
         if (!active || paused) return;
-        if (index !== player) { moveTo(index); return; }
+        travelTo(index, () => { collect(); showPieces(); });
+      } else {
+        collect();
       }
-      mark(cell, number, correct.includes(number), challenge);
-      if (mode === "zoo") showPieces();
     });
     return cell;
   });
@@ -333,6 +397,7 @@ function startRound(focus) {
   if (focus) cells[0].focus();
 }
 function finish(message, advance) {
+  cancelTravel();
   active = false;
   feedback.textContent = message;
   for (const cell of cells) cell.setAttribute("aria-disabled", "true");
@@ -358,7 +423,7 @@ function mark(cell, n, correct, challenge) {
   if (!lives) finish(feedback.textContent + " Fin de partida. Puntaje: " + score + ".", false);
   if (!remaining) {
     const final = round === roundCount() - 1;
-    finish(final ? "¡Completaste " + (roundCount() === 1 ? "el nivel" : "los " + roundCount() + " niveles") + "! Puntaje: " + score + "." : "¡Ronda completa! Podés avanzar. " + explanation, !final);
+    finish(final ? "¡Completaste " + (roundCount() === 1 ? "el nivel" : "los " + roundCount() + " niveles") + "! Puntaje: " + score + ". " + explanation : "¡Ronda completa! Podés avanzar. " + explanation, !final);
   }
 }
 board.addEventListener("keydown", event => {
@@ -386,7 +451,7 @@ function chooseMode(value) {
   byId("briefing").hidden = mode !== "zoo";
   byId("playfield").hidden = mode === "zoo";
   byId("arcade-controls").hidden = mode !== "zoo";
-  byId("controls").textContent = mode === "zoo" ? "Hacé clic en una casilla vecina para moverte y en la casilla de la exploradora para recolectar. En el celular, tocá las casillas." : "Tocá las casillas correctas o movete con las flechas y marcá con Espacio o Enter.";
+  byId("controls").textContent = mode === "zoo" ? "Hacé un clic en tu respuesta para moverte hasta ella y marcarla. En el celular, tocá la casilla." : "Tocá las casillas correctas o movete con las flechas y marcá con Espacio o Enter.";
   byId("zoo").setAttribute("aria-pressed", String(mode === "zoo"));
   byId("math").setAttribute("aria-pressed", String(mode === "math"));
   byId("topic").textContent = mode === "zoo"

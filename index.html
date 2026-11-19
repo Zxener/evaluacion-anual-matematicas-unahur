@@ -44,7 +44,7 @@ main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px 
 <details><summary>Aplicación en el vivero</summary><p>Si cada bandeja tiene 19 cavidades y hay 95 plantines, llenás 5 bandejas completas. En cambio, 100 plantines llenan 5 bandejas y sobran 5.</p></details></section>
 <section class="panel" id="practica"><div class="kicker">Juego de práctica</div><h2 id="practice-heading" tabindex="-1">Elegí qué practicar</h2><div class="actions" role="group" aria-label="Tema del tablero"><button id="zoo" class="btn secondary mode" aria-pressed="true">Zoología y Sanidad Animal</button><button id="math" class="btn secondary mode" aria-pressed="false">Múltiplos</button></div><div id="settings" class="settings"><label for="zoo-topic">Tema del juego<select id="zoo-topic"><option value="all">Todos los temas</option>
 <optgroup label="Sanidad Animal"><option value="animalHealth">Sanidad Animal completa</option><option value="animals">Clasificación de animales</option><option value="parasites">Parásitos externos</option><option value="care">Observación y cuidados</option></optgroup>
-<optgroup label="Sanidad Vegetal"><option value="plantHealth">Sanidad Vegetal completa</option><option value="animalia">Animalia · filos</option><option value="arthropods">Arthropoda · clases</option><option value="insects">Insecta · órdenes</option><option value="viruses">Virus · familias</option><option value="bacteria">Bacterias · géneros</option><option value="fungi">Hongos · géneros</option><option value="oomycetes">Seudohongos · oomicetos</option><option value="diagnosis">Diagnóstico · síntomas</option><option value="signs">Diagnóstico · signos</option><option value="plantPests">Plagas vegetales</option><option value="pestCycles">Ciclos de plagas</option><option value="diseaseCycles">Ciclos de enfermedades</option><option value="chartTaxonomy">Taxonomía de la lámina</option><option value="diseaseMatch">Relacionar organismo y enfermedad</option></optgroup></select></label><label for="hunter-speed">Velocidad del cazador<select id="hunter-speed"><option value="slow">Tranquila</option><option value="normal" selected>Clásica</option><option value="fast">Rápida</option></select></label></div><p class="hint" id="topic"></p>
+<optgroup label="Sanidad Vegetal"><option value="plantHealth">Sanidad Vegetal completa</option><option value="animalia">Animalia · 34 filos</option><option value="arthropods">Arthropoda · clases</option><option value="insects">Insecta · 28 órdenes vivientes</option><option value="viruses">Virus · familias</option><option value="bacteria">Bacterias · géneros</option><option value="fungi">Hongos · géneros</option><option value="oomycetes">Seudohongos · oomicetos</option><option value="diagnosis">Diagnóstico · síntomas</option><option value="signs">Diagnóstico · signos</option><option value="plantPests">Plagas vegetales</option><option value="pestCycles">Ciclos de plagas</option><option value="diseaseCycles">Ciclos de enfermedades</option><option value="chartTaxonomy">Taxonomía de la lámina</option><option value="diseaseMatch">Relacionar organismo y enfermedad</option></optgroup></select></label><label for="hunter-speed">Velocidad del cazador<select id="hunter-speed"><option value="slow">Tranquila</option><option value="normal" selected>Clásica</option><option value="fast">Rápida</option></select></label></div><p class="hint" id="topic"></p>
 <div id="briefing" class="arcade"><h3>Patrulla zoológica</h3><p>Elegí Sanidad Animal, Sanidad Vegetal o la campaña completa en el menú de temas.</p><p>Hacé un clic para moverte a cualquier casilla. Hacé doble clic para elegir la respuesta. Si está lejos, la exploradora la marca al llegar. Una respuesta incorrecta o un choque con el cazador te cuesta una vida.</p><div class="cast"><span><i class="sprite" aria-hidden="true"></i> Exploradora</span><span><i class="sprite rival" aria-hidden="true"></i> Cazador</span></div><div class="actions"><button type="button" class="btn" id="play">Empezar partida</button><a class="btn secondary" href="#respuestas">Estudiar las respuestas</a></div></div>
 <div id="playfield" hidden>
 <p class="muted" id="controls"></p>
@@ -134,20 +134,10 @@ const careRound = {
   tip: "Agua, alimento adecuado, refugio y un lugar limpio para descansar cubren necesidades básicas."
 };
 const plantTopics = {
-  animalia: {
-    rule: "Marcá los filos del reino Animalia",
-    correct: ["Arthropoda", "Nematoda", "Mollusca", "Annelida", "Chordata"],
-    tip: "Animalia es el reino. Arthropoda y Nematoda son dos de sus filos."
-  },
   arthropods: {
     rule: "Marcá las clases de artrópodos",
     correct: ["Insecta", "Arachnida", "Chilopoda", "Diplopoda", "Malacostraca"],
     tip: "Arthropoda es un filo. Insecta, Arachnida y Malacostraca son ejemplos de clases dentro de ese filo."
-  },
-  insects: {
-    rule: "Marcá los órdenes de la clase Insecta",
-    correct: ["Coleoptera", "Lepidoptera", "Hemiptera", "Diptera", "Thysanoptera", "Hymenoptera"],
-    tip: "Coleoptera agrupa a los escarabajos, Lepidoptera a mariposas y polillas, y Thysanoptera a los trips."
   },
   viruses: {
     rule: "Marcá las familias que incluyen virus de plantas",
@@ -205,8 +195,46 @@ const diseaseCycleRound = {
   ordered: true,
   tip: "El contacto por sí solo no implica que haya infección. Los síntomas pueden aparecer después de que la infección ya se estableció."
 };
+const animalPhyla = [
+  "Acanthocephala", "Annelida", "Arthropoda", "Brachiopoda", "Bryozoa",
+  "Chaetognatha", "Chordata", "Cnidaria", "Ctenophora", "Cycliophora",
+  "Echinodermata", "Entoprocta", "Gastrotricha", "Gnathostomulida", "Hemichordata",
+  "Kinorhyncha", "Loricifera", "Micrognathozoa", "Mollusca", "Nematoda",
+  "Nematomorpha", "Nemertea", "Onychophora", "Orthonectida", "Phoronida",
+  "Placozoa", "Platyhelminthes", "Porifera", "Priapula", "Rhombozoa",
+  "Rotifera", "Sipuncula", "Tardigrada", "Xenacoelomorpha"
+];
+const insectOrders = [
+  "Archaeognatha", "Blattodea", "Coleoptera", "Dermaptera", "Diptera",
+  "Embioptera", "Ephemeroptera", "Grylloblattodea", "Hemiptera", "Hymenoptera",
+  "Lepidoptera", "Mantodea", "Mantophasmatodea", "Mecoptera", "Megaloptera",
+  "Neuroptera", "Odonata", "Orthoptera", "Phasmatodea", "Plecoptera", "Psocodea",
+  "Raphidioptera", "Siphonaptera", "Strepsiptera", "Thysanoptera", "Trichoptera",
+  "Zoraptera", "Zygentoma"
+];
+const animalPhylaNote = "La clasificación de Ruggiero y col. (2015) reconoce estos 34 filos. Priapula también se llama Priapulida. Otros esquemas pueden agrupar algunos filos de otra manera.";
+const insectOrdersNote = "La referencia agrupa a las termitas en Blattodea y a los piojos en Psocodea. Algunos esquemas dividen o reúnen órdenes de otra manera.";
+function taxonomyRounds(terms, rule, tip) {
+  const perRound = 7;
+  return Array.from({length: Math.ceil(terms.length / perRound)}, (_, index) => {
+    const start = index * perRound;
+    return {
+      rule: rule + " · parte " + (index + 1) + " de " + Math.ceil(terms.length / perRound),
+      correct: terms.slice(start, start + perRound),
+      excludedDistractors: terms,
+      tip
+    };
+  });
+}
+const animaliaRounds = taxonomyRounds(animalPhyla, "Marcá los filos del reino Animalia", animalPhylaNote);
+const insectaRounds = taxonomyRounds(insectOrders, "Marcá los órdenes vivientes de la clase Insecta", insectOrdersNote);
+const {arthropods, ...otherPlantTopics} = plantTopics;
 const plantLearningRounds = [
   ...Object.values(plantTopics), signRound, plantPestRound, ...pestCycleRounds, diseaseCycleRound
+];
+const plantCampaign = [
+  ...animaliaRounds, arthropods, ...insectaRounds, ...Object.values(otherPlantTopics),
+  signRound, plantPestRound, ...pestCycleRounds, diseaseCycleRound
 ];
 const plantReviewTerms = [
   "Temperatura", "Humedad ambiental", "Helada", "Salinidad", "Viento", "Granizo",
@@ -259,17 +287,19 @@ const diseaseRounds = diseasePairs.map(([organism, disease, classification]) => 
   other: diseaseChoices.filter(choice => choice !== disease),
   tip: organism + " causa " + disease.toLowerCase() + ". Grupo: " + classification + "."
 }));
-const plantRounds = [...plantLearningRounds, ...chartRounds];
+const plantRounds = [...plantCampaign, ...chartRounds];
 const plantPool = [...new Set([...plantRounds.flatMap(level => level.correct), ...plantReviewTerms])];
 const animalRounds = [mammalRound, birdRound, zoology[1], zoology[2], careRound];
 for (const level of plantRounds) {
 
-  level.other = plantPool.filter(term => !level.correct.includes(term));
+  level.other = plantPool.filter(term => !(level.excludedDistractors ?? level.correct).includes(term));
 }
 const zooTopics = {
   all: [...animalRounds, ...plantRounds, ...diseaseRounds],
   animalHealth: animalRounds,
   plantHealth: [...plantRounds, ...diseaseRounds],
+  animalia: animaliaRounds,
+  insects: insectaRounds,
   signs: [signRound],
   plantPests: [plantPestRound],
   pestCycles: pestCycleRounds,
@@ -284,11 +314,13 @@ const zooTopics = {
 function renderAnswerGuide() {
   const groups = [
     ["Sanidad Animal", animalRounds],
+    ["Animalia · lista completa de filos", [{rule: "34 filos del reino Animalia", correct: animalPhyla, tip: animalPhylaNote}], ["Ruggiero y col., tabla 2 corregida", "https://doi.org/10.1371/journal.pone.0130114"]],
+    ["Insecta · lista completa de órdenes", [{rule: "28 órdenes vivientes de la clase Insecta", correct: insectOrders, tip: insectOrdersNote}], ["Clasificación de Insecta, figura suplementaria S1", "https://doi.org/10.1038/s41422-026-01220-0"]],
     ["Sanidad Vegetal", plantLearningRounds],
     ["Taxonomía de la lámina", chartRounds],
     ["Organismos y enfermedades", diseaseRounds]
   ];
-  for (const [title, rounds] of groups) {
+  for (const [title, rounds, source] of groups) {
     const group = document.createElement("details");
     group.className = "answer-group";
     const heading = document.createElement("summary");
@@ -309,6 +341,14 @@ function renderAnswerGuide() {
       list.append(item);
     }
     group.append(heading, list);
+    if (source) {
+      const reference = document.createElement("a");
+      reference.textContent = source[0];
+      reference.href = source[1];
+      reference.target = "_blank";
+      reference.rel = "noopener noreferrer";
+      group.append(reference);
+    }
     byId("answer-groups").append(group);
   }
 }

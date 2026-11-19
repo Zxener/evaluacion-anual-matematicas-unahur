@@ -12,6 +12,8 @@
 .hero{background:radial-gradient(ellipse at 85% 25%,#322364,transparent 58%),linear-gradient(120deg,#171433,#11152b);border-bottom:1px solid var(--line)}.hero .shell{padding:clamp(48px,8vw,112px) 0;display:grid;grid-template-columns:1fr .52fr;align-items:center;gap:32px}.eyebrow,.kicker{font:bold .88rem var(--mono);letter-spacing:.13em;color:var(--lime);text-transform:uppercase}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(3rem,8vw,7rem);line-height:.87;letter-spacing:-.085em;margin:.22em 0 .25em}h1 span{display:block;color:var(--purple)}.hero p{color:var(--muted);margin-bottom:.3em}.hero .author{color:var(--ink);margin-top:1.35em}.art{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #7253b5;transform:rotate(-6deg);box-shadow:10px 12px #20163b;font:bold clamp(1rem,3vw,2.4rem) var(--mono);color:#bba5ea;margin:10px}.art span{display:grid;place-items:center;aspect-ratio:1.25;border:1px solid #543b88;background:#1c2147}.art .lit{background:var(--lime);color:#18201e}
 main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:24px;align-items:start}.panel{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:clamp(20px,4vw,36px)}nav.panel{padding:20px;position:sticky;top:20px}nav ol{margin:10px 0 0;padding-left:23px;color:var(--purple)}nav li+li{margin-top:8px}nav a{color:var(--ink)}section+section{margin-top:20px}section{scroll-margin-top:20px}h2{font-size:clamp(1.7rem,4vw,2.8rem);line-height:1.1;letter-spacing:-.04em;margin:.15em 0 .5em}.muted,.hint{color:var(--muted)}.hint{margin:.8em 0 0}.actions,.stats{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:9px;border:1px solid transparent;padding:8px 15px;background:var(--lime);color:#17221a;font-weight:750;text-decoration:none}.secondary{background:#252044;color:var(--ink);border-color:#625494}.gate{max-width:670px;margin:auto}.gate form{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}.gate label{width:100%;font-weight:700}.gate input{flex:1;min-width:130px;background:#0e1024;color:var(--ink);border:1px solid #76699f;border-radius:8px;padding:10px}.message{min-height:1.55em;margin:.65em 0 0;color:var(--lime)}.stats{justify-content:space-between;font:bold .88rem var(--mono);color:var(--muted);margin:14px 0}.stats b{color:var(--ink)}.board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;padding:8px;border:1px solid #8064ca;border-radius:10px;background:#111a46}.cell{min-width:0;min-height:44px;aspect-ratio:1.46;border:1px solid #7656b5;background:#22245b;color:var(--ink);border-radius:5px;font:bold clamp(.85rem,2.6vw,1.35rem) var(--mono);padding:0}.board.words{grid-template-columns:repeat(3,minmax(0,1fr))}.words .cell{aspect-ratio:auto;min-height:62px;padding:6px;overflow-wrap:anywhere;font:700 clamp(.78rem,2vw,1rem) system-ui}.mode[aria-pressed=true]{background:var(--lime);color:#17221a}.cell:hover:not([aria-disabled=true]){background:#3b3077}.cell.good,.cell.good:hover{background:#273e32;border-color:var(--lime);color:var(--lime)}.cell.bad{background:#54234a;border-color:#fd9cce;color:#ffd1ee}.cell[aria-disabled=true]{cursor:default}.rule{margin:0;font-weight:750;color:var(--lime)}details{padding:12px 0;border-top:1px solid var(--line)}details p{margin:.75em 0 0;color:var(--muted)}summary{cursor:pointer;color:var(--ink);font-weight:650}footer{border-top:1px solid var(--line);color:var(--muted);padding:22px 0}code,kbd{font-family:var(--mono);color:var(--lime)}
 @media(max-width:720px){.layout{grid-template-columns:1fr}nav.panel{position:static}.hero .shell{gap:12px;grid-template-columns:1fr .38fr}.art{margin:0}.shell{width:calc(100% - 28px)}}@media(max-width:390px){.hero .shell{grid-template-columns:1fr}.art{display:none}.panel{padding:15px}.board{gap:3px;padding:4px}}@media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}}
+
+.arcade{background:#080916;border:2px solid #b977ff;border-radius:12px;padding:clamp(12px,3vw,22px);margin:16px 0;color:#fff}.arcade h3{color:var(--lime);font:900 clamp(1.2rem,4vw,2rem) var(--mono);margin-bottom:12px}.arcade p{margin-bottom:12px}.cast{display:flex;gap:24px;flex-wrap:wrap;margin:12px 0}.cast span{display:flex;align-items:center;gap:10px}.sprite{display:inline-block;width:23px;height:23px;background:#c7fb73;clip-path:polygon(25% 0,75% 0,75% 15%,100% 15%,100% 70%,75% 70%,75% 100%,55% 100%,55% 80%,35% 80%,35% 100%,15% 100%,15% 70%,0 70%,0 25%,25% 25%)}.sprite.rival{background:#ff9d59;clip-path:polygon(50% 0,100% 40%,83% 92%,64% 92%,50% 75%,36% 92%,17% 92%,0 40%)}.cell{position:relative}.words .cell{padding-bottom:25px;min-height:70px}.words .cell .sprite{position:absolute;bottom:3px;left:calc(50% - 11px);pointer-events:none}.words .player{border:2px solid var(--lime)}.words .enemy{border:2px solid #ff9d59}.controls{margin:10px 0}.controls button{min-width:44px}.paused .cell{opacity:.58}
 </style>
 </head>
 <body>
@@ -37,10 +39,14 @@ main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px 
 <details><summary>Múltiplos de 5</summary><p>Terminan en 0 o en 5. Ejemplo: 45 = 5 × 9.</p></details>
 <details><summary>Múltiplos de 19</summary><p>Usá la tabla o dividí por 19. Los primeros positivos son 19, 38, 57, 76 y 95.</p></details>
 <details><summary>Aplicación en el vivero</summary><p>Si cada bandeja tiene 19 cavidades y hay 95 plantines, llenás 5 bandejas completas. En cambio, 100 plantines llenan 5 bandejas y sobran 5.</p></details></section>
-<section class="panel" id="practica"><div class="kicker">Juego de práctica</div><h2>Elegí qué practicar</h2><div class="actions" role="group" aria-label="Tema del tablero"><button id="zoo" class="btn secondary mode" aria-pressed="true">Zoología y Sanidad Animal</button><button id="math" class="btn secondary mode" aria-pressed="false">Múltiplos</button></div><p class="hint" id="topic"></p><p class="muted" id="controls">Tocá las casillas correctas o entrá al tablero con Tab, movete con las flechas y marcá con Espacio o Enter.</p>
+<section class="panel" id="practica"><div class="kicker">Juego de práctica</div><h2>Elegí qué practicar</h2><div class="actions" role="group" aria-label="Tema del tablero"><button id="zoo" class="btn secondary mode" aria-pressed="true">Zoología y Sanidad Animal</button><button id="math" class="btn secondary mode" aria-pressed="false">Múltiplos</button></div><p class="hint" id="topic"></p>
+<div id="briefing" class="arcade"><h3>Patrulla zoológica</h3><p>Mové a la exploradora y recolectá las respuestas correctas para sumar puntos. Una respuesta incorrecta o un choque con el rival te cuesta una vida.</p><div class="cast"><span><i class="sprite" aria-hidden="true"></i> Exploradora</span><span><i class="sprite rival" aria-hidden="true"></i> Rival</span></div><button type="button" class="btn" id="play">Empezar partida</button></div>
+<div id="playfield" hidden>
+<p class="muted" id="controls"></p>
 <p class="rule" id="rule"></p><div class="stats"><span>Ronda <b id="round"></b></span><span>Puntos <b id="score"></b></span><span>Vidas <b id="lives"></b></span><span>Restan <b id="left"></b></span></div>
 <div class="board" id="board" role="group" aria-label="Casillas numéricas" aria-describedby="controls rule"></div>
-<p class="message" id="feedback" role="status"></p><div class="actions"><button id="next" class="btn" hidden>Siguiente ronda</button><button id="restart" class="btn secondary">Reiniciar partida</button></div></section>
+<div id="arcade-controls" class="actions controls" aria-label="Controles táctiles"><button class="btn secondary" data-move="left" aria-label="Izquierda">←</button><button class="btn secondary" data-move="up" aria-label="Arriba">↑</button><button class="btn secondary" data-move="down" aria-label="Abajo">↓</button><button class="btn secondary" data-move="right" aria-label="Derecha">→</button><button class="btn" id="collect">Recolectar</button><button class="btn secondary" id="pause">Pausar</button></div>
+<p class="message" id="feedback" role="status"></p><div class="actions"><button id="next" class="btn" hidden>Siguiente ronda</button><button id="restart" class="btn secondary">Reiniciar partida</button></div></div></section>
 </div></div></main>
 <footer><div class="shell">Matemáticas · UNAHUR</div></footer>
 <script>
@@ -106,6 +112,67 @@ const board = byId("board");
 const feedback = byId("feedback");
 const next = byId("next");
 let round, score, lives, remaining, cursor, active, cells;
+let player = 0, enemy = 11, paused = false, grace = 0;
+function showPieces() {
+  cells.forEach((cell, index) => {
+    cell.classList.toggle("player", index === player);
+    cell.classList.toggle("enemy", index === enemy);
+    const piece = cell.querySelector(".sprite");
+    piece.hidden = index !== player && index !== enemy;
+    piece.classList.toggle("rival", index === enemy);
+    const position = index === player ? ", exploradora" : index === enemy ? ", rival" : "";
+    const result = cell.classList.contains("good") ? ", correcto" : cell.classList.contains("bad") ? ", incorrecto" : "";
+    cell.setAttribute("aria-label", cell.firstChild.textContent + result + position);
+  });
+}
+function collision() {
+  if (player !== enemy) return false;
+  lives--;
+  player = 0;
+  enemy = 11;
+  grace = 2;
+  update();
+  if (lives) feedback.textContent = "El rival te alcanzó. Perdiste una vida.";
+  else finish("El rival te alcanzó. Fin de partida. Puntaje: " + score + ".", false);
+  return true;
+}
+function move(direction) {
+  if (!active || paused) return;
+  const row = Math.floor(player / 3);
+  const col = player % 3;
+  const offset = {left: col > 0 ? -1 : 0, right: col < 2 ? 1 : 0, up: row > 0 ? -3 : 0, down: row < 3 ? 3 : 0};
+  player += offset[direction];
+  collision();
+  showPieces();
+  cells[player].focus({preventScroll:true});
+}
+function setPaused(value) {
+  paused = value;
+  board.classList.toggle("paused", paused);
+  byId("pause").textContent = paused ? "Continuar" : "Pausar";
+}
+setInterval(() => {
+  if (mode !== "zoo" || !active || paused || document.hidden || byId("playfield").hidden || classroom.hidden) return;
+  const bounds = board.getBoundingClientRect();
+  if (bounds.bottom <= 0 || bounds.top >= innerHeight) return;
+  if (grace > 0) { grace--; return; }
+  const row = Math.floor(player / 3) - Math.floor(enemy / 3);
+  const col = player % 3 - enemy % 3;
+  enemy += Math.abs(row) >= Math.abs(col) ? Math.sign(row) * 3 : Math.sign(col);
+  collision();
+  showPieces();
+}, 2600);
+function revealGame() {
+  byId("briefing").hidden = true;
+  byId("playfield").hidden = false;
+  cells[0].focus();
+}
+byId("play").addEventListener("click", revealGame);
+byId("pause").addEventListener("click", () => { if (active) setPaused(!paused); });
+byId("collect").addEventListener("click", () => { if (active && !paused) cells[player].click(); });
+byId("arcade-controls").querySelectorAll("[data-move]").forEach(button => {
+  button.addEventListener("click", () => move(button.dataset.move));
+});
 function update() {
   byId("round").textContent = (round + 1) + " / " + divisors.length;
   byId("score").textContent = score;
@@ -126,6 +193,10 @@ function startRound(focus) {
   board.classList.toggle("words", mode === "zoo");
   cursor = 0;
   active = true;
+  player = 0;
+  enemy = 11;
+  grace = 2;
+  setPaused(false);
   next.hidden = true;
   feedback.textContent = "";
   byId("rule").textContent = challenge.rule;
@@ -140,10 +211,24 @@ function startRound(focus) {
       cursor = index;
       cell.tabIndex = 0;
     });
-    cell.addEventListener("click", () => mark(cell, number, correct.includes(number), challenge));
+    if (mode === "zoo") {
+      const piece = document.createElement("i");
+      piece.className = "sprite";
+      piece.setAttribute("aria-hidden", "true");
+      cell.append(piece);
+    }
+    cell.addEventListener("click", () => {
+      if (mode === "zoo") {
+        if (!active || paused || index !== player) return;
+        if (collision()) { showPieces(); return; }
+      }
+      mark(cell, number, correct.includes(number), challenge);
+      if (mode === "zoo") showPieces();
+    });
     return cell;
   });
   board.replaceChildren(...cells);
+  if (mode === "zoo") showPieces();
   update();
   if (focus) cells[0].focus();
 }
@@ -177,7 +262,18 @@ function mark(cell, n, correct, challenge) {
   }
 }
 board.addEventListener("keydown", event => {
-  const columns = mode === "zoo" ? 3 : 6;
+  const direction = {ArrowLeft:"left", ArrowRight:"right", ArrowUp:"up", ArrowDown:"down"}[event.key];
+  if (mode === "zoo") {
+    if (direction) {
+      event.preventDefault();
+      move(direction);
+    } else if (event.key === " " || event.key === "Enter") {
+      event.preventDefault();
+      if (active && !paused) cells[player].click();
+    }
+    return;
+  }
+  const columns = 6;
   const moves = {ArrowLeft: -1, ArrowRight: 1, ArrowUp: -columns, ArrowDown: columns};
   const move = moves[event.key];
   if (move === undefined) return;
@@ -195,6 +291,10 @@ next.addEventListener("click", () => { round++; startRound(true); });
 byId("restart").addEventListener("click", () => restart(true));
 function chooseMode(value) {
   mode = value;
+  byId("briefing").hidden = mode !== "zoo";
+  byId("playfield").hidden = mode === "zoo";
+  byId("arcade-controls").hidden = mode !== "zoo";
+  byId("controls").textContent = mode === "zoo" ? "Movete con las flechas y recolectá con Espacio o Enter. En el celular, usá los botones debajo del tablero." : "Tocá las casillas correctas o movete con las flechas y marcá con Espacio o Enter.";
   byId("zoo").setAttribute("aria-pressed", String(mode === "zoo"));
   byId("math").setAttribute("aria-pressed", String(mode === "math"));
   byId("topic").textContent = mode === "zoo"

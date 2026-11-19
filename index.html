@@ -13,7 +13,7 @@
 main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:24px;align-items:start}.panel{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:clamp(20px,4vw,36px)}nav.panel{padding:20px;position:sticky;top:20px}nav ol{margin:10px 0 0;padding-left:23px;color:var(--purple)}nav li+li{margin-top:8px}nav a{color:var(--ink)}section+section{margin-top:20px}section{scroll-margin-top:20px}h2{font-size:clamp(1.7rem,4vw,2.8rem);line-height:1.1;letter-spacing:-.04em;margin:.15em 0 .5em}.muted,.hint{color:var(--muted)}.hint{margin:.8em 0 0}.actions,.stats{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:9px;border:1px solid transparent;padding:8px 15px;background:var(--lime);color:#17221a;font-weight:750;text-decoration:none}.secondary{background:#252044;color:var(--ink);border-color:#625494}.gate{max-width:670px;margin:auto}.gate form{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}.gate label{width:100%;font-weight:700}.gate input{flex:1;min-width:130px;background:#0e1024;color:var(--ink);border:1px solid #76699f;border-radius:8px;padding:10px}.message{min-height:1.55em;margin:.65em 0 0;color:var(--lime)}.stats{justify-content:space-between;font:bold .88rem var(--mono);color:var(--muted);margin:14px 0}.stats b{color:var(--ink)}.board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;padding:8px;border:1px solid #8064ca;border-radius:10px;background:#111a46}.cell{min-width:0;min-height:44px;aspect-ratio:1.46;border:1px solid #7656b5;background:#22245b;color:var(--ink);border-radius:5px;font:bold clamp(.85rem,2.6vw,1.35rem) var(--mono);padding:0}.board.words{grid-template-columns:repeat(6,minmax(66px,1fr));position:relative;overflow-x:auto}.words .cell{aspect-ratio:auto;min-height:62px;padding:6px;overflow-wrap:anywhere;font:700 clamp(.78rem,2vw,1rem) system-ui}.mode[aria-pressed=true]{background:var(--lime);color:#17221a}.cell:hover:not([aria-disabled=true]){background:#3b3077}.cell.good,.cell.good:hover{background:#273e32;border-color:var(--lime);color:var(--lime)}.cell.bad{background:#54234a;border-color:#fd9cce;color:#ffd1ee}.cell[aria-disabled=true]{cursor:default}.rule{margin:0;font-weight:750;color:var(--lime)}details{padding:12px 0;border-top:1px solid var(--line)}details p{margin:.75em 0 0;color:var(--muted)}summary{cursor:pointer;color:var(--ink);font-weight:650}footer{border-top:1px solid var(--line);color:var(--muted);padding:22px 0}code,kbd{font-family:var(--mono);color:var(--lime)}
 @media(max-width:720px){.layout{grid-template-columns:1fr}nav.panel{position:static}.hero .shell{gap:12px;grid-template-columns:1fr .38fr}.art{margin:0}.shell{width:calc(100% - 28px)}}@media(max-width:390px){.hero .shell{grid-template-columns:1fr}.art{display:none}.panel{padding:15px}.board{gap:3px;padding:4px}}@media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}}
 
-.arcade{background:#080916;border:2px solid #b977ff;border-radius:12px;padding:clamp(12px,3vw,22px);margin:16px 0;color:#fff}.arcade h3{color:var(--lime);font:900 clamp(1.2rem,4vw,2rem) var(--mono);margin-bottom:12px}.arcade p{margin-bottom:12px}.cast{display:flex;gap:24px;flex-wrap:wrap;margin:12px 0}.cast span{display:flex;align-items:center;gap:10px}.sprite{display:inline-block;width:23px;height:23px;background:#c7fb73;clip-path:polygon(25% 0,75% 0,75% 15%,100% 15%,100% 70%,75% 70%,75% 100%,55% 100%,55% 80%,35% 80%,35% 100%,15% 100%,15% 70%,0 70%,0 25%,25% 25%)}.sprite.rival{background:#ff9d59;clip-path:polygon(50% 0,100% 40%,83% 92%,64% 92%,50% 75%,36% 92%,17% 92%,0 40%)}.cell{position:relative}.words .cell{padding-bottom:25px;min-height:70px}.words .cell .sprite{position:absolute;bottom:3px;left:calc(50% - 11px);pointer-events:none}.words .player{border:2px solid var(--lime)}.words .enemy{border:2px solid #ff9d59}.controls{margin:10px 0}.controls button{min-width:44px}.paused .cell{opacity:.58}
+.arcade{background:#080916;border:2px solid #b977ff;border-radius:12px;padding:clamp(12px,3vw,22px);margin:16px 0;color:#fff}.arcade h3{color:var(--lime);font:900 clamp(1.2rem,4vw,2rem) var(--mono);margin-bottom:12px}.arcade p{margin-bottom:12px}.cast{display:flex;gap:24px;flex-wrap:wrap;margin:12px 0}.cast span{display:flex;align-items:center;gap:10px}.sprite{display:inline-block;width:23px;height:23px;background:#c7fb73;clip-path:polygon(25% 0,75% 0,75% 15%,100% 15%,100% 70%,75% 70%,75% 100%,55% 100%,55% 80%,35% 80%,35% 100%,15% 100%,15% 70%,0 70%,0 25%,25% 25%)}.sprite.rival{background:#ff9d59;clip-path:polygon(50% 0,100% 40%,83% 92%,64% 92%,50% 75%,36% 92%,17% 92%,0 40%)}.cell{position:relative}.words .cell{user-select:none;padding-bottom:25px;min-height:70px}.words .cell .sprite{position:absolute;bottom:3px;left:calc(50% - 11px);pointer-events:none}.words .player{border:2px solid var(--lime)}.words .enemy{border:2px solid #ff9d59}.controls{margin:10px 0}.controls button{min-width:44px}.paused .cell{opacity:.58}
 .settings{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}.settings label{display:grid;gap:4px;font-weight:700;color:var(--muted)}.settings select{font:inherit;background:#252044;color:var(--ink);border:1px solid #625494;border-radius:8px;padding:8px;max-width:100%}.settings select:focus-visible{outline:3px solid var(--lime);outline-offset:3px}.answer-group{margin-top:8px}.answer-list{padding-inline-start:1.45rem;margin:12px 0 4px}.answer-list li{padding:10px 0 10px 4px}.answer-list li+li{border-top:1px solid var(--line)}.answer-list h3{font-size:1rem;margin:0 0 4px}.answer-list p{margin:4px 0}.answer-list strong{color:var(--lime)}
 </style>
 </head>
@@ -43,7 +43,7 @@ main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px 
 <section class="panel" id="practica"><div class="kicker">Juego de práctica</div><h2 id="practice-heading" tabindex="-1">Elegí qué practicar</h2><div class="actions" role="group" aria-label="Tema del tablero"><button id="zoo" class="btn secondary mode" aria-pressed="true">Zoología y Sanidad Animal</button><button id="math" class="btn secondary mode" aria-pressed="false">Múltiplos</button></div><div id="settings" class="settings"><label for="zoo-topic">Tema del juego<select id="zoo-topic"><option value="all">Todos los temas</option>
 <optgroup label="Sanidad Animal"><option value="animalHealth">Sanidad Animal completa</option><option value="animals">Clasificación de animales</option><option value="parasites">Parásitos externos</option><option value="care">Observación y cuidados</option></optgroup>
 <optgroup label="Sanidad Vegetal"><option value="plantHealth">Sanidad Vegetal completa</option><option value="animalia">Animalia · filos</option><option value="arthropods">Arthropoda · clases</option><option value="insects">Insecta · órdenes</option><option value="viruses">Virus · familias</option><option value="bacteria">Bacterias · géneros</option><option value="fungi">Hongos · géneros</option><option value="oomycetes">Seudohongos · oomicetos</option><option value="diagnosis">Diagnóstico · síntomas</option><option value="chartTaxonomy">Taxonomía de la lámina</option><option value="diseaseMatch">Relacionar organismo y enfermedad</option></optgroup></select></label><label for="hunter-speed">Velocidad del cazador<select id="hunter-speed"><option value="slow">Tranquila</option><option value="normal" selected>Clásica</option><option value="fast">Rápida</option></select></label></div><p class="hint" id="topic"></p>
-<div id="briefing" class="arcade"><h3>Patrulla zoológica</h3><p>Elegí Sanidad Animal, Sanidad Vegetal o la campaña completa en el menú de temas.</p><p>Hacé un clic en la respuesta que elegís, aunque esté lejos. La exploradora se mueve y la marca al llegar. Una respuesta incorrecta o un choque con el cazador te cuesta una vida.</p><div class="cast"><span><i class="sprite" aria-hidden="true"></i> Exploradora</span><span><i class="sprite rival" aria-hidden="true"></i> Cazador</span></div><div class="actions"><button type="button" class="btn" id="play">Empezar partida</button><a class="btn secondary" href="#respuestas">Estudiar las respuestas</a></div></div>
+<div id="briefing" class="arcade"><h3>Patrulla zoológica</h3><p>Elegí Sanidad Animal, Sanidad Vegetal o la campaña completa en el menú de temas.</p><p>Hacé un clic para moverte a cualquier casilla. Hacé doble clic para elegir la respuesta. Si está lejos, la exploradora la marca al llegar. Una respuesta incorrecta o un choque con el cazador te cuesta una vida.</p><div class="cast"><span><i class="sprite" aria-hidden="true"></i> Exploradora</span><span><i class="sprite rival" aria-hidden="true"></i> Cazador</span></div><div class="actions"><button type="button" class="btn" id="play">Empezar partida</button><a class="btn secondary" href="#respuestas">Estudiar las respuestas</a></div></div>
 <div id="playfield" hidden>
 <p class="muted" id="controls"></p>
 <p class="rule" id="rule"></p><div class="stats"><span>Ronda <b id="round"></b></span><span>Puntos <b id="score"></b></span><span>Vidas <b id="lives"></b></span><span>Restan <b id="left"></b></span></div>
@@ -329,7 +329,7 @@ function travelTo(index, onArrival) {
   function step() {
     if (!active || paused) return;
     if (player === index) {
-      onArrival();
+      onArrival?.();
       return;
     }
     const rows = Math.floor(index / zooColumns) - Math.floor(player / zooColumns);
@@ -338,7 +338,7 @@ function travelTo(index, onArrival) {
     const caught = collision();
     showPieces();
     if (!caught) {
-      if (player === index) onArrival();
+      if (player === index) onArrival?.();
       else travelTimer = setTimeout(step, 90);
     }
   }
@@ -422,15 +422,21 @@ function startRound(focus) {
       piece.setAttribute("aria-hidden", "true");
       cell.append(piece);
     }
-    cell.addEventListener("click", () => {
-      const collect = () => mark(cell, number, correct.includes(number), challenge);
-      if (mode === "zoo") {
+    const collect = () => mark(cell, number, correct.includes(number), challenge);
+    if (mode === "zoo") {
+      cell.addEventListener("click", event => {
+        if (active && !paused && event.detail === 1) travelTo(index);
+      });
+      cell.addEventListener("dblclick", () => {
         if (!active || paused) return;
-        travelTo(index, () => { collect(); showPieces(); });
-      } else {
-        collect();
-      }
-    });
+        travelTo(index, () => {
+          collect();
+          showPieces();
+        });
+      });
+    } else {
+      cell.addEventListener("click", collect);
+    }
     return cell;
   });
   board.replaceChildren(...cells);
@@ -493,7 +499,7 @@ function chooseMode(value) {
   byId("briefing").hidden = mode !== "zoo";
   byId("playfield").hidden = mode === "zoo";
   byId("arcade-controls").hidden = mode !== "zoo";
-  byId("controls").textContent = mode === "zoo" ? "Hacé un clic en tu respuesta para moverte hasta ella y marcarla. En el celular, tocá la casilla." : "Tocá las casillas correctas o movete con las flechas y marcá con Espacio o Enter.";
+  byId("controls").textContent = mode === "zoo" ? "Un clic para moverte. Doble clic en una casilla para elegir la respuesta." : "Tocá las casillas correctas o movete con las flechas y marcá con Espacio o Enter.";
   byId("zoo").setAttribute("aria-pressed", String(mode === "zoo"));
   byId("math").setAttribute("aria-pressed", String(mode === "math"));
   byId("topic").textContent = mode === "zoo"

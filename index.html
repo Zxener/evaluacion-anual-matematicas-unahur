@@ -14,7 +14,8 @@ main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px 
 @media(max-width:720px){.layout{grid-template-columns:1fr}nav.panel{position:static}.hero .shell{gap:12px;grid-template-columns:1fr .38fr}.art{margin:0}.shell{width:calc(100% - 28px)}}@media(max-width:390px){.hero .shell{grid-template-columns:1fr}.art{display:none}.panel{padding:15px}.board{gap:3px;padding:4px}}@media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}}
 
 .arcade{background:#080916;border:2px solid #b977ff;border-radius:12px;padding:clamp(12px,3vw,22px);margin:16px 0;color:#fff}.arcade h3{color:var(--lime);font:900 clamp(1.2rem,4vw,2rem) var(--mono);margin-bottom:12px}.arcade p{margin-bottom:12px}.cast{display:flex;gap:24px;flex-wrap:wrap;margin:12px 0}.cast span{display:flex;align-items:center;gap:10px}.sprite{display:inline-block;width:23px;height:23px;background:#c7fb73;clip-path:polygon(25% 0,75% 0,75% 15%,100% 15%,100% 70%,75% 70%,75% 100%,55% 100%,55% 80%,35% 80%,35% 100%,15% 100%,15% 70%,0 70%,0 25%,25% 25%)}.sprite.rival{background:#ff9d59;clip-path:polygon(50% 0,100% 40%,83% 92%,64% 92%,50% 75%,36% 92%,17% 92%,0 40%)}.cell{position:relative}.words .cell{padding-bottom:25px;min-height:70px}.words .cell .sprite{position:absolute;bottom:3px;left:calc(50% - 11px);pointer-events:none}.words .player{border:2px solid var(--lime)}.words .enemy{border:2px solid #ff9d59}.controls{margin:10px 0}.controls button{min-width:44px}.paused .cell{opacity:.58}
-.settings{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}.settings label{display:grid;gap:4px;font-weight:700;color:var(--muted)}.settings select{font:inherit;background:#252044;color:var(--ink);border:1px solid #625494;border-radius:8px;padding:8px;max-width:100%}.settings select:focus-visible{outline:3px solid var(--lime);outline-offset:3px}</style>
+.settings{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}.settings label{display:grid;gap:4px;font-weight:700;color:var(--muted)}.settings select{font:inherit;background:#252044;color:var(--ink);border:1px solid #625494;border-radius:8px;padding:8px;max-width:100%}.settings select:focus-visible{outline:3px solid var(--lime);outline-offset:3px}.answer-group{margin-top:8px}.answer-list{padding-inline-start:1.45rem;margin:12px 0 4px}.answer-list li{padding:10px 0 10px 4px}.answer-list li+li{border-top:1px solid var(--line)}.answer-list h3{font-size:1rem;margin:0 0 4px}.answer-list p{margin:4px 0}.answer-list strong{color:var(--lime)}
+</style>
 </head>
 <body>
 <header class="top"><div class="shell"><div class="brand"><span aria-hidden="true">▦</span>UNAHUR</div><small>Universidad Nacional de Hurlingham</small></div></header>
@@ -31,7 +32,7 @@ main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px 
 <noscript>Activá JavaScript para entrar y jugar.</noscript>
 </section>
 <div id="classroom" class="layout" hidden>
-<nav class="panel" aria-label="Índice de estudio"><div class="kicker">Índice</div><ol><li><a href="#original">Number Munchers</a></li><li><a href="#repaso">Repaso de múltiplos</a></li><li><a href="#practica">Práctica interactiva</a></li></ol></nav>
+<nav class="panel" aria-label="Índice de estudio"><div class="kicker">Índice</div><ol><li><a href="#original">Number Munchers</a></li><li><a href="#repaso">Repaso de múltiplos</a></li><li><a href="#practica">Práctica interactiva</a></li><li><a href="#respuestas">Guía de respuestas</a></li></ol></nav>
 <div>
 <section class="panel" id="original"><div class="kicker">Arcade original</div><h2 tabindex="-1">Number Munchers</h2><p class="muted">En ClassicReload podés jugar al clásico en el navegador. Movete con las flechas y usá la barra espaciadora para comer un número que cumpla la consigna.</p><a class="btn" target="_blank" rel="noopener noreferrer" href="https://classicreload.com/number-munchers.html">Jugar al original en ClassicReload</a></section>
 <section class="panel" id="repaso"><div class="kicker">Guía de estudio</div><h2>Repaso de múltiplos</h2><p>Un número es múltiplo de otro si podés dividirlo por ese número y obtener resto cero. Por ejemplo, <code>38 = 19 × 2</code>, así que 38 es múltiplo de 19.</p>
@@ -39,16 +40,23 @@ main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px 
 <details><summary>Múltiplos de 5</summary><p>Terminan en 0 o en 5. Ejemplo: 45 = 5 × 9.</p></details>
 <details><summary>Múltiplos de 19</summary><p>Usá la tabla o dividí por 19. Los primeros positivos son 19, 38, 57, 76 y 95.</p></details>
 <details><summary>Aplicación en el vivero</summary><p>Si cada bandeja tiene 19 cavidades y hay 95 plantines, llenás 5 bandejas completas. En cambio, 100 plantines llenan 5 bandejas y sobran 5.</p></details></section>
-<section class="panel" id="practica"><div class="kicker">Juego de práctica</div><h2>Elegí qué practicar</h2><div class="actions" role="group" aria-label="Tema del tablero"><button id="zoo" class="btn secondary mode" aria-pressed="true">Zoología y Sanidad Animal</button><button id="math" class="btn secondary mode" aria-pressed="false">Múltiplos</button></div><div id="settings" class="settings"><label for="zoo-topic">Tema del juego<select id="zoo-topic"><option value="all">Todos los temas</option>
+<section class="panel" id="practica"><div class="kicker">Juego de práctica</div><h2 id="practice-heading" tabindex="-1">Elegí qué practicar</h2><div class="actions" role="group" aria-label="Tema del tablero"><button id="zoo" class="btn secondary mode" aria-pressed="true">Zoología y Sanidad Animal</button><button id="math" class="btn secondary mode" aria-pressed="false">Múltiplos</button></div><div id="settings" class="settings"><label for="zoo-topic">Tema del juego<select id="zoo-topic"><option value="all">Todos los temas</option>
 <optgroup label="Sanidad Animal"><option value="animalHealth">Sanidad Animal completa</option><option value="animals">Clasificación de animales</option><option value="parasites">Parásitos externos</option><option value="care">Observación y cuidados</option></optgroup>
 <optgroup label="Sanidad Vegetal"><option value="plantHealth">Sanidad Vegetal completa</option><option value="animalia">Animalia · filos</option><option value="arthropods">Arthropoda · clases</option><option value="insects">Insecta · órdenes</option><option value="viruses">Virus · familias</option><option value="bacteria">Bacterias · géneros</option><option value="fungi">Hongos · géneros</option><option value="oomycetes">Seudohongos · oomicetos</option><option value="diagnosis">Diagnóstico · síntomas</option><option value="chartTaxonomy">Taxonomía de la lámina</option><option value="diseaseMatch">Relacionar organismo y enfermedad</option></optgroup></select></label><label for="hunter-speed">Velocidad del cazador<select id="hunter-speed"><option value="slow">Tranquila</option><option value="normal" selected>Clásica</option><option value="fast">Rápida</option></select></label></div><p class="hint" id="topic"></p>
-<div id="briefing" class="arcade"><h3>Patrulla zoológica</h3><p>Elegí Sanidad Animal, Sanidad Vegetal o la campaña completa en el menú de temas.</p><p>Hacé un clic en la respuesta que elegís, aunque esté lejos. La exploradora se mueve y la marca al llegar. Una respuesta incorrecta o un choque con el cazador te cuesta una vida.</p><div class="cast"><span><i class="sprite" aria-hidden="true"></i> Exploradora</span><span><i class="sprite rival" aria-hidden="true"></i> Cazador</span></div><button type="button" class="btn" id="play">Empezar partida</button></div>
+<div id="briefing" class="arcade"><h3>Patrulla zoológica</h3><p>Elegí Sanidad Animal, Sanidad Vegetal o la campaña completa en el menú de temas.</p><p>Hacé un clic en la respuesta que elegís, aunque esté lejos. La exploradora se mueve y la marca al llegar. Una respuesta incorrecta o un choque con el cazador te cuesta una vida.</p><div class="cast"><span><i class="sprite" aria-hidden="true"></i> Exploradora</span><span><i class="sprite rival" aria-hidden="true"></i> Cazador</span></div><div class="actions"><button type="button" class="btn" id="play">Empezar partida</button><a class="btn secondary" href="#respuestas">Estudiar las respuestas</a></div></div>
 <div id="playfield" hidden>
 <p class="muted" id="controls"></p>
 <p class="rule" id="rule"></p><div class="stats"><span>Ronda <b id="round"></b></span><span>Puntos <b id="score"></b></span><span>Vidas <b id="lives"></b></span><span>Restan <b id="left"></b></span></div>
 <div class="board" id="board" role="group" aria-label="Casillas del tablero" aria-describedby="controls rule"></div>
 <div id="arcade-controls" class="actions controls"><button class="btn secondary" id="pause">Pausar</button></div>
 <p class="message" id="feedback" role="status"></p><div class="actions"><button id="next" class="btn" hidden>Siguiente ronda</button><button id="restart" class="btn secondary">Reiniciar partida</button></div></div></section>
+<section class="panel" id="respuestas" aria-labelledby="answer-heading">
+<h2 id="answer-heading" tabindex="-1">Guía de respuestas</h2>
+<p class="muted">Abrí un tema para ver las consignas, las respuestas correctas y su explicación antes de jugar.</p>
+<div id="answer-groups"></div>
+<p><a href="#repaso">Ver también el repaso de múltiplos de 2, 5 y 19</a></p>
+<a class="btn" href="#practica">Volver al juego</a>
+</section>
 </div></div></main>
 <footer><div class="shell">Matemáticas · UNAHUR</div></footer>
 <script>
@@ -59,7 +67,10 @@ const loginMessage = byId("login-message");
 function enter(focus) {
   byId("gate").hidden = true;
   classroom.hidden = false;
-  if (focus) classroom.querySelector("h2").focus();
+  if (!focus) return;
+  const destination = {"#respuestas": "answer-heading", "#practica": "practice-heading"}[location.hash];
+  if (destination) byId(destination).focus();
+  else classroom.querySelector("h2").focus();
 }
 try { if (sessionStorage.getItem("aula-matematicas") === "abierta") enter(false); } catch {}
 byId("login").addEventListener("submit", event => {
@@ -232,6 +243,37 @@ const zooTopics = {
   parasites: [zoology[1]],
   care: [zoology[2], careRound]
 };
+function renderAnswerGuide() {
+  const groups = [
+    ["Sanidad Animal", animalRounds],
+    ["Sanidad Vegetal", Object.values(plantTopics)],
+    ["Taxonomía de la lámina", chartRounds],
+    ["Organismos y enfermedades", diseaseRounds]
+  ];
+  for (const [title, rounds] of groups) {
+    const group = document.createElement("details");
+    group.className = "answer-group";
+    const heading = document.createElement("summary");
+    heading.textContent = title;
+    const list = document.createElement("ol");
+    list.className = "answer-list";
+    for (const round of rounds) {
+      const item = document.createElement("li");
+      const prompt = document.createElement("h3");
+      prompt.textContent = round.rule;
+      const answer = document.createElement("p");
+      const correct = document.createElement("strong");
+      correct.textContent = round.correct.join(", ");
+      answer.append(correct);
+      const explanation = document.createElement("p");
+      explanation.textContent = round.tip;
+      item.append(prompt, answer, explanation);
+      list.append(item);
+    }
+    group.append(heading, list);
+    byId("answer-groups").append(group);
+  }
+}
 const hunterDelays = {slow:3900, normal:2600, fast:1550};
 let mode = "zoo";
 let zooRounds = zooTopics.all;
@@ -462,6 +504,7 @@ function chooseMode(value) {
 byId("zoo").addEventListener("click", () => chooseMode("zoo"));
 byId("math").addEventListener("click", () => chooseMode("math"));
 byId("zoo-topic").addEventListener("change", () => chooseMode("zoo"));
+renderAnswerGuide();
 chooseMode("zoo");
 </script>
 </body>

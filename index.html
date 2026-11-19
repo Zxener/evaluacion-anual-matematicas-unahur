@@ -14,7 +14,7 @@ main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px 
 @media(max-width:720px){.layout{grid-template-columns:1fr}nav.panel{position:static}.hero .shell{gap:12px;grid-template-columns:1fr .38fr}.art{margin:0}.shell{width:calc(100% - 28px)}}@media(max-width:390px){.hero .shell{grid-template-columns:1fr}.art{display:none}.panel{padding:15px}.board{gap:3px;padding:4px}}@media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}}
 
 .arcade{background:#080916;border:2px solid #b977ff;border-radius:12px;padding:clamp(12px,3vw,22px);margin:16px 0;color:#fff}.arcade h3{color:var(--lime);font:900 clamp(1.2rem,4vw,2rem) var(--mono);margin-bottom:12px}.arcade p{margin-bottom:12px}.cast{display:flex;gap:24px;flex-wrap:wrap;margin:12px 0}.cast span{display:flex;align-items:center;gap:10px}.sprite{display:inline-block;width:23px;height:23px;background:#c7fb73;clip-path:polygon(25% 0,75% 0,75% 15%,100% 15%,100% 70%,75% 70%,75% 100%,55% 100%,55% 80%,35% 80%,35% 100%,15% 100%,15% 70%,0 70%,0 25%,25% 25%)}.sprite.rival{background:#ff9d59;clip-path:polygon(50% 0,100% 40%,83% 92%,64% 92%,50% 75%,36% 92%,17% 92%,0 40%)}.cell{position:relative}.words .cell{padding-bottom:25px;min-height:70px}.words .cell .sprite{position:absolute;bottom:3px;left:calc(50% - 11px);pointer-events:none}.words .player{border:2px solid var(--lime)}.words .enemy{border:2px solid #ff9d59}.controls{margin:10px 0}.controls button{min-width:44px}.paused .cell{opacity:.58}
-</style>
+.settings{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0}.settings label{display:grid;gap:4px;font-weight:700;color:var(--muted)}.settings select{font:inherit;background:#252044;color:var(--ink);border:1px solid #625494;border-radius:8px;padding:8px;max-width:100%}.settings select:focus-visible{outline:3px solid var(--lime);outline-offset:3px}</style>
 </head>
 <body>
 <header class="top"><div class="shell"><div class="brand"><span aria-hidden="true">▦</span>UNAHUR</div><small>Universidad Nacional de Hurlingham</small></div></header>
@@ -39,8 +39,8 @@ main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px 
 <details><summary>Múltiplos de 5</summary><p>Terminan en 0 o en 5. Ejemplo: 45 = 5 × 9.</p></details>
 <details><summary>Múltiplos de 19</summary><p>Usá la tabla o dividí por 19. Los primeros positivos son 19, 38, 57, 76 y 95.</p></details>
 <details><summary>Aplicación en el vivero</summary><p>Si cada bandeja tiene 19 cavidades y hay 95 plantines, llenás 5 bandejas completas. En cambio, 100 plantines llenan 5 bandejas y sobran 5.</p></details></section>
-<section class="panel" id="practica"><div class="kicker">Juego de práctica</div><h2>Elegí qué practicar</h2><div class="actions" role="group" aria-label="Tema del tablero"><button id="zoo" class="btn secondary mode" aria-pressed="true">Zoología y Sanidad Animal</button><button id="math" class="btn secondary mode" aria-pressed="false">Múltiplos</button></div><p class="hint" id="topic"></p>
-<div id="briefing" class="arcade"><h3>Patrulla zoológica</h3><p>Mové a la exploradora y recolectá las respuestas correctas para sumar puntos. Una respuesta incorrecta o un choque con el rival te cuesta una vida.</p><div class="cast"><span><i class="sprite" aria-hidden="true"></i> Exploradora</span><span><i class="sprite rival" aria-hidden="true"></i> Rival</span></div><button type="button" class="btn" id="play">Empezar partida</button></div>
+<section class="panel" id="practica"><div class="kicker">Juego de práctica</div><h2>Elegí qué practicar</h2><div class="actions" role="group" aria-label="Tema del tablero"><button id="zoo" class="btn secondary mode" aria-pressed="true">Zoología y Sanidad Animal</button><button id="math" class="btn secondary mode" aria-pressed="false">Múltiplos</button></div><div id="settings" class="settings"><label for="zoo-topic">Tema del juego<select id="zoo-topic"><option value="all">Todos los temas</option><option value="animals">Clasificación de animales</option><option value="parasites">Parásitos externos</option><option value="care">Observación y cuidados</option></select></label><label for="hunter-speed">Velocidad del cazador<select id="hunter-speed"><option value="slow">Tranquila</option><option value="normal" selected>Clásica</option><option value="fast">Rápida</option></select></label></div><p class="hint" id="topic"></p>
+<div id="briefing" class="arcade"><h3>Patrulla zoológica</h3><p>Mové a la exploradora y recolectá las respuestas correctas para sumar puntos. Una respuesta incorrecta o un choque con el cazador te cuesta una vida.</p><div class="cast"><span><i class="sprite" aria-hidden="true"></i> Exploradora</span><span><i class="sprite rival" aria-hidden="true"></i> Cazador</span></div><button type="button" class="btn" id="play">Empezar partida</button></div>
 <div id="playfield" hidden>
 <p class="muted" id="controls"></p>
 <p class="rule" id="rule"></p><div class="stats"><span>Ronda <b id="round"></b></span><span>Puntos <b id="score"></b></span><span>Vidas <b id="lives"></b></span><span>Restan <b id="left"></b></span></div>
@@ -93,7 +93,40 @@ const zoology = [
     tip: "Registrá qué cambió y desde cuándo. Un signo aislado no basta para determinar su causa."
   }
 ];
+const mammalRound = zoology[0];
+const birdAnswers = ["Gallina", "Pato", "Ñandú", "Pingüino", "Ganso", "Paloma"];
+const birdRound = {
+  rule: "Identificá los animales que son aves",
+  correct: birdAnswers,
+  other: [...mammalRound.correct, ...mammalRound.other, "Perro", "Gato"]
+    .filter(animal => !birdAnswers.includes(animal)),
+  tip: "Las aves tienen plumas. El ñandú y el pingüino también son aves, aunque no vuelan."
+};
+const careRound = {
+  rule: "Identificá las acciones que favorecen el bienestar cotidiano",
+  correct: ["Agua limpia disponible", "Refugio del clima", "Cama limpia y seca", "Alimento adecuado"],
+  other: [
+    "Dejar el bebedero vacío", "Acumular residuos", "Usar cama empapada",
+    "Impedir el descanso", "Bloquear el paso al agua", "Ofrecer alimento mohoso",
+    "Dejar clavos expuestos", "Ignorar un cerco roto", "Hacinarlos",
+    "Anular la ventilación", "Dejar charcos en el galpón", "Retirar todo el refugio",
+    "Mantener pisos resbalosos", "Dejar cables sueltos", "Mezclar alimento con basura",
+    "Tapar todos los bebederos", "Bloquear la salida del corral", "Dejar vidrios en el piso",
+    "Sobresaltar a los animales", "Dejar herramientas en el paso", "Ignorar pérdidas de agua",
+    "Dejar sogas en el suelo", "Usar recipientes sucios", "Obstruir los desagües",
+    "Dejar residuos en el alimento", "Mantener la cama con barro"
+  ],
+  tip: "Agua, alimento adecuado, refugio y un lugar limpio para descansar cubren necesidades básicas."
+};
+const zooTopics = {
+  all: [mammalRound, birdRound, zoology[1], zoology[2], careRound],
+  animals: [mammalRound, birdRound],
+  parasites: [zoology[1]],
+  care: [zoology[2], careRound]
+};
+const hunterDelays = {slow:3900, normal:2600, fast:1550};
 let mode = "zoo";
+let zooRounds = zooTopics.all;
 function mathRound(divisor) {
   const numbers = Array.from({length: divisor * 12 + 24}, (_, i) => i + 1);
   return {
@@ -122,7 +155,7 @@ function showPieces() {
     const piece = cell.querySelector(".sprite");
     piece.hidden = index !== player && index !== enemy;
     piece.classList.toggle("rival", index === enemy);
-    const position = index === player ? ", exploradora" : index === enemy ? ", rival" : "";
+    const position = index === player ? ", exploradora" : index === enemy ? ", cazador" : "";
     const result = cell.classList.contains("good") ? ", correcto" : cell.classList.contains("bad") ? ", incorrecto" : "";
     cell.setAttribute("aria-label", cell.firstChild.textContent + result + position);
   });
@@ -134,8 +167,8 @@ function collision() {
   enemy = zooLastCell;
   grace = 2;
   update();
-  if (lives) feedback.textContent = "El rival te alcanzó. Perdiste una vida.";
-  else finish("El rival te alcanzó. Fin de partida. Puntaje: " + score + ".", false);
+  if (lives) feedback.textContent = "El cazador te alcanzó. Perdiste una vida.";
+  else finish("El cazador te alcanzó. Fin de partida. Puntaje: " + score + ".", false);
   return true;
 }
 function move(direction) {
@@ -159,7 +192,8 @@ function setPaused(value) {
   board.classList.toggle("paused", paused);
   byId("pause").textContent = paused ? "Continuar" : "Pausar";
 }
-setInterval(() => {
+let hunterTimer;
+function advanceHunter() {
   if (mode !== "zoo" || !active || paused || document.hidden || byId("playfield").hidden || classroom.hidden) return;
   const bounds = board.getBoundingClientRect();
   if (bounds.bottom <= 0 || bounds.top >= innerHeight) return;
@@ -169,7 +203,13 @@ setInterval(() => {
   enemy += Math.abs(row) >= Math.abs(col) ? Math.sign(row) * zooColumns : Math.sign(col);
   collision();
   showPieces();
-}, 2600);
+}
+function setHunterSpeed() {
+  clearInterval(hunterTimer);
+  hunterTimer = setInterval(advanceHunter, hunterDelays[byId("hunter-speed").value]);
+}
+byId("hunter-speed").addEventListener("change", setHunterSpeed);
+setHunterSpeed();
 function revealGame() {
   byId("briefing").hidden = true;
   byId("playfield").hidden = false;
@@ -182,7 +222,7 @@ byId("arcade-controls").querySelectorAll("[data-move]").forEach(button => {
   button.addEventListener("click", () => move(button.dataset.move));
 });
 function update() {
-  byId("round").textContent = (round + 1) + " / " + divisors.length;
+  byId("round").textContent = (round + 1) + " / " + roundCount();
   byId("score").textContent = score;
   byId("lives").textContent = lives;
   byId("left").textContent = remaining;
@@ -194,8 +234,9 @@ function shuffle(items) {
   }
   return items;
 }
+function roundCount() { return mode === "zoo" ? zooRounds.length : divisors.length; }
 function startRound(focus) {
-  const challenge = mode === "zoo" ? zoology[round] : mathRound(divisors[round]);
+  const challenge = mode === "zoo" ? zooRounds[round] : mathRound(divisors[round]);
   const {correct, other} = challenge;
   remaining = correct.length;
   board.classList.toggle("words", mode === "zoo");
@@ -265,8 +306,8 @@ function mark(cell, n, correct, challenge) {
   update();
   if (!lives) finish(feedback.textContent + " Fin de partida. Puntaje: " + score + ".", false);
   if (!remaining) {
-    const final = round === divisors.length - 1;
-    finish(final ? "¡Completaste las tres rondas! Puntaje: " + score + "." : "¡Ronda completa! Podés avanzar. " + explanation, !final);
+    const final = round === roundCount() - 1;
+    finish(final ? "¡Completaste " + (roundCount() === 1 ? "el nivel" : "los " + roundCount() + " niveles") + "! Puntaje: " + score + "." : "¡Ronda completa! Podés avanzar. " + explanation, !final);
   }
 }
 board.addEventListener("keydown", event => {
@@ -299,6 +340,8 @@ next.addEventListener("click", () => { round++; startRound(true); });
 byId("restart").addEventListener("click", () => restart(true));
 function chooseMode(value) {
   mode = value;
+  zooRounds = zooTopics[byId("zoo-topic").value];
+  byId("settings").hidden = mode !== "zoo";
   byId("briefing").hidden = mode !== "zoo";
   byId("playfield").hidden = mode === "zoo";
   byId("arcade-controls").hidden = mode !== "zoo";
@@ -306,12 +349,13 @@ function chooseMode(value) {
   byId("zoo").setAttribute("aria-pressed", String(mode === "zoo"));
   byId("math").setAttribute("aria-pressed", String(mode === "math"));
   byId("topic").textContent = mode === "zoo"
-    ? "Tablero de 6 × 5. Tres rondas sobre mamíferos, parásitos externos y observación del animal."
+    ? "Tablero de 6 × 5 · " + zooRounds.length + (zooRounds.length === 1 ? " nivel" : " niveles") + " · 3 vidas"
     : "Tres rondas de múltiplos de 2, 5 y 19.";
   restart(false);
 }
 byId("zoo").addEventListener("click", () => chooseMode("zoo"));
 byId("math").addEventListener("click", () => chooseMode("math"));
+byId("zoo-topic").addEventListener("change", () => chooseMode("zoo"));
 chooseMode("zoo");
 </script>
 </body>

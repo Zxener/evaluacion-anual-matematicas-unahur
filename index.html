@@ -10,7 +10,7 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,sans-serif}a{color:var(--lime);text-underline-offset:.25em}button,input{font:inherit}button,a,input{touch-action:manipulation}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--lime);outline-offset:4px}[hidden]{display:none!important}
 .shell{width:min(1150px,calc(100% - 42px));margin:auto}.top{border-bottom:1px solid var(--line)}.top .shell{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font:bold 1.15rem var(--mono);letter-spacing:.12em;color:var(--lime)}.brand span{color:var(--purple);margin-right:.7em}.top small{color:var(--muted);text-align:right}
 .hero{background:radial-gradient(ellipse at 85% 25%,#322364,transparent 58%),linear-gradient(120deg,#171433,#11152b);border-bottom:1px solid var(--line)}.hero .shell{padding:clamp(48px,8vw,112px) 0;display:grid;grid-template-columns:1fr .52fr;align-items:center;gap:32px}.eyebrow,.kicker{font:bold .88rem var(--mono);letter-spacing:.13em;color:var(--lime);text-transform:uppercase}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(3rem,8vw,7rem);line-height:.87;letter-spacing:-.085em;margin:.22em 0 .25em}h1 span{display:block;color:var(--purple)}.hero p{color:var(--muted);margin-bottom:.3em}.hero .author{color:var(--ink);margin-top:1.35em}.art{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #7253b5;transform:rotate(-6deg);box-shadow:10px 12px #20163b;font:bold clamp(1rem,3vw,2.4rem) var(--mono);color:#bba5ea;margin:10px}.art span{display:grid;place-items:center;aspect-ratio:1.25;border:1px solid #543b88;background:#1c2147}.art .lit{background:var(--lime);color:#18201e}
-main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:24px;align-items:start}.panel{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:clamp(20px,4vw,36px)}nav.panel{padding:20px;position:sticky;top:20px}nav ol{margin:10px 0 0;padding-left:23px;color:var(--purple)}nav li+li{margin-top:8px}nav a{color:var(--ink)}section+section{margin-top:20px}section{scroll-margin-top:20px}h2{font-size:clamp(1.7rem,4vw,2.8rem);line-height:1.1;letter-spacing:-.04em;margin:.15em 0 .5em}.muted,.hint{color:var(--muted)}.hint{margin:.8em 0 0}.actions,.stats{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:9px;border:1px solid transparent;padding:8px 15px;background:var(--lime);color:#17221a;font-weight:750;text-decoration:none}.secondary{background:#252044;color:var(--ink);border-color:#625494}.gate{max-width:670px;margin:auto}.gate form{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}.gate label{width:100%;font-weight:700}.gate input{flex:1;min-width:130px;background:#0e1024;color:var(--ink);border:1px solid #76699f;border-radius:8px;padding:10px}.message{min-height:1.55em;margin:.65em 0 0;color:var(--lime)}.stats{justify-content:space-between;font:bold .88rem var(--mono);color:var(--muted);margin:14px 0}.stats b{color:var(--ink)}.board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;padding:8px;border:1px solid #8064ca;border-radius:10px;background:#111a46}.cell{min-width:0;min-height:44px;aspect-ratio:1.46;border:1px solid #7656b5;background:#22245b;color:var(--ink);border-radius:5px;font:bold clamp(.85rem,2.6vw,1.35rem) var(--mono);padding:0}.board.words{grid-template-columns:repeat(3,minmax(0,1fr))}.words .cell{aspect-ratio:auto;min-height:62px;padding:6px;overflow-wrap:anywhere;font:700 clamp(.78rem,2vw,1rem) system-ui}.mode[aria-pressed=true]{background:var(--lime);color:#17221a}.cell:hover:not([aria-disabled=true]){background:#3b3077}.cell.good,.cell.good:hover{background:#273e32;border-color:var(--lime);color:var(--lime)}.cell.bad{background:#54234a;border-color:#fd9cce;color:#ffd1ee}.cell[aria-disabled=true]{cursor:default}.rule{margin:0;font-weight:750;color:var(--lime)}details{padding:12px 0;border-top:1px solid var(--line)}details p{margin:.75em 0 0;color:var(--muted)}summary{cursor:pointer;color:var(--ink);font-weight:650}footer{border-top:1px solid var(--line);color:var(--muted);padding:22px 0}code,kbd{font-family:var(--mono);color:var(--lime)}
+main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:24px;align-items:start}.panel{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:clamp(20px,4vw,36px)}nav.panel{padding:20px;position:sticky;top:20px}nav ol{margin:10px 0 0;padding-left:23px;color:var(--purple)}nav li+li{margin-top:8px}nav a{color:var(--ink)}section+section{margin-top:20px}section{scroll-margin-top:20px}h2{font-size:clamp(1.7rem,4vw,2.8rem);line-height:1.1;letter-spacing:-.04em;margin:.15em 0 .5em}.muted,.hint{color:var(--muted)}.hint{margin:.8em 0 0}.actions,.stats{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:9px;border:1px solid transparent;padding:8px 15px;background:var(--lime);color:#17221a;font-weight:750;text-decoration:none}.secondary{background:#252044;color:var(--ink);border-color:#625494}.gate{max-width:670px;margin:auto}.gate form{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}.gate label{width:100%;font-weight:700}.gate input{flex:1;min-width:130px;background:#0e1024;color:var(--ink);border:1px solid #76699f;border-radius:8px;padding:10px}.message{min-height:1.55em;margin:.65em 0 0;color:var(--lime)}.stats{justify-content:space-between;font:bold .88rem var(--mono);color:var(--muted);margin:14px 0}.stats b{color:var(--ink)}.board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;padding:8px;border:1px solid #8064ca;border-radius:10px;background:#111a46}.cell{min-width:0;min-height:44px;aspect-ratio:1.46;border:1px solid #7656b5;background:#22245b;color:var(--ink);border-radius:5px;font:bold clamp(.85rem,2.6vw,1.35rem) var(--mono);padding:0}.board.words{grid-template-columns:repeat(6,minmax(66px,1fr));position:relative;overflow-x:auto}.words .cell{aspect-ratio:auto;min-height:62px;padding:6px;overflow-wrap:anywhere;font:700 clamp(.78rem,2vw,1rem) system-ui}.mode[aria-pressed=true]{background:var(--lime);color:#17221a}.cell:hover:not([aria-disabled=true]){background:#3b3077}.cell.good,.cell.good:hover{background:#273e32;border-color:var(--lime);color:var(--lime)}.cell.bad{background:#54234a;border-color:#fd9cce;color:#ffd1ee}.cell[aria-disabled=true]{cursor:default}.rule{margin:0;font-weight:750;color:var(--lime)}details{padding:12px 0;border-top:1px solid var(--line)}details p{margin:.75em 0 0;color:var(--muted)}summary{cursor:pointer;color:var(--ink);font-weight:650}footer{border-top:1px solid var(--line);color:var(--muted);padding:22px 0}code,kbd{font-family:var(--mono);color:var(--lime)}
 @media(max-width:720px){.layout{grid-template-columns:1fr}nav.panel{position:static}.hero .shell{gap:12px;grid-template-columns:1fr .38fr}.art{margin:0}.shell{width:calc(100% - 28px)}}@media(max-width:390px){.hero .shell{grid-template-columns:1fr}.art{display:none}.panel{padding:15px}.board{gap:3px;padding:4px}}@media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}}
 
 .arcade{background:#080916;border:2px solid #b977ff;border-radius:12px;padding:clamp(12px,3vw,22px);margin:16px 0;color:#fff}.arcade h3{color:var(--lime);font:900 clamp(1.2rem,4vw,2rem) var(--mono);margin-bottom:12px}.arcade p{margin-bottom:12px}.cast{display:flex;gap:24px;flex-wrap:wrap;margin:12px 0}.cast span{display:flex;align-items:center;gap:10px}.sprite{display:inline-block;width:23px;height:23px;background:#c7fb73;clip-path:polygon(25% 0,75% 0,75% 15%,100% 15%,100% 70%,75% 70%,75% 100%,55% 100%,55% 80%,35% 80%,35% 100%,15% 100%,15% 70%,0 70%,0 25%,25% 25%)}.sprite.rival{background:#ff9d59;clip-path:polygon(50% 0,100% 40%,83% 92%,64% 92%,50% 75%,36% 92%,17% 92%,0 40%)}.cell{position:relative}.words .cell{padding-bottom:25px;min-height:70px}.words .cell .sprite{position:absolute;bottom:3px;left:calc(50% - 11px);pointer-events:none}.words .player{border:2px solid var(--lime)}.words .enemy{border:2px solid #ff9d59}.controls{margin:10px 0}.controls button{min-width:44px}.paused .cell{opacity:.58}
@@ -77,19 +77,19 @@ const zoology = [
   {
     rule: "Identificá los animales que son mamíferos",
     correct: ["Vaca", "Caballo", "Oveja", "Cabra"],
-    other: ["Gallina", "Pato", "Rana", "Tortuga", "Trucha", "Abeja", "Caracol", "Lombriz"],
+    other: ["Gallina", "Pato", "Rana", "Tortuga", "Trucha", "Abeja", "Caracol", "Lombriz", "Ganso", "Paloma", "Ñandú", "Pingüino", "Iguana", "Yacaré", "Lagarto", "Sapo", "Salamandra", "Dorado", "Bagre", "Pejerrey", "Cangrejo", "Camarón", "Pulpo", "Calamar", "Libélula", "Escarabajo"],
     tip: "Los mamíferos alimentan a sus crías con leche."
   },
   {
     rule: "Identificá los organismos que pueden vivir como parásitos externos",
     correct: ["Pulga", "Garrapata", "Piojo", "Ácaro de la sarna"],
-    other: ["Tenia", "Lombriz intestinal", "Mariposa", "Libélula", "Abeja", "Caracol", "Lombriz de tierra", "Ciempiés"],
+    other: ["Tenia", "Lombriz intestinal", "Mariposa", "Libélula", "Abeja", "Caracol", "Lombriz de tierra", "Ciempiés", "Babosa", "Caracol de jardín", "Mariposa nocturna", "Hormiga", "Grillo", "Saltamontes", "Vaquita de San Antonio", "Mariposa monarca", "Escarabajo pelotero", "Langosta marina", "Mejillón", "Almeja", "Estrella de mar", "Camaleón", "Sapo", "Geco", "Tortuga de agua", "Pez payaso"],
     tip: "Un ectoparásito vive en la superficie del hospedador, por ejemplo en la piel o entre el pelaje."
   },
   {
     rule: "Identificá cambios que conviene registrar durante la observación del animal",
     correct: ["Menos apetito", "Tos repetida", "Dificultad para caminar", "Menos actividad habitual"],
-    other: ["Nombre del establecimiento", "Número del corral", "Precio del alimento", "Marca del bebedero", "Color del portón", "Tamaño del comedero", "Modelo del tractor", "Material de la cerca"],
+    other: ["Nombre del establecimiento", "Número del corral", "Precio del alimento", "Marca del bebedero", "Color del portón", "Tamaño del comedero", "Modelo del tractor", "Material de la cerca", "Nombre del encargado", "Marca del tractor", "Color del cerco", "Número de parcela", "Precio del fardo", "Ancho del pasillo", "Altura del techo", "Plano del predio", "Tamaño del galpón", "Edad del galpón", "Color del balde", "Marca de la pala", "Tipo de candado", "Número de depósito", "Modelo de la balanza", "Tamaño del silo", "Color del techo", "Material del portón"],
     tip: "Registrá qué cambió y desde cuándo. Un signo aislado no basta para determinar su causa."
   }
 ];
@@ -112,7 +112,9 @@ const board = byId("board");
 const feedback = byId("feedback");
 const next = byId("next");
 let round, score, lives, remaining, cursor, active, cells;
-let player = 0, enemy = 11, paused = false, grace = 0;
+const zooColumns = 6, zooRows = 5;
+const zooLastCell = zooColumns * zooRows - 1;
+let player = 0, enemy = zooLastCell, paused = false, grace = 0;
 function showPieces() {
   cells.forEach((cell, index) => {
     cell.classList.toggle("player", index === player);
@@ -129,7 +131,7 @@ function collision() {
   if (player !== enemy) return false;
   lives--;
   player = 0;
-  enemy = 11;
+  enemy = zooLastCell;
   grace = 2;
   update();
   if (lives) feedback.textContent = "El rival te alcanzó. Perdiste una vida.";
@@ -138,13 +140,19 @@ function collision() {
 }
 function move(direction) {
   if (!active || paused) return;
-  const row = Math.floor(player / 3);
-  const col = player % 3;
-  const offset = {left: col > 0 ? -1 : 0, right: col < 2 ? 1 : 0, up: row > 0 ? -3 : 0, down: row < 3 ? 3 : 0};
+  const row = Math.floor(player / zooColumns);
+  const col = player % zooColumns;
+  const offset = {left: col > 0 ? -1 : 0, right: col < zooColumns - 1 ? 1 : 0, up: row > 0 ? -zooColumns : 0, down: row < zooRows - 1 ? zooColumns : 0};
   player += offset[direction];
   collision();
   showPieces();
-  cells[player].focus({preventScroll:true});
+  const cell = cells[player];
+  cell.focus({preventScroll:true});
+  const left = cell.offsetLeft;
+  if (left < board.scrollLeft) board.scrollLeft = left;
+  if (left + cell.offsetWidth > board.scrollLeft + board.clientWidth) {
+    board.scrollLeft = left + cell.offsetWidth - board.clientWidth;
+  }
 }
 function setPaused(value) {
   paused = value;
@@ -156,9 +164,9 @@ setInterval(() => {
   const bounds = board.getBoundingClientRect();
   if (bounds.bottom <= 0 || bounds.top >= innerHeight) return;
   if (grace > 0) { grace--; return; }
-  const row = Math.floor(player / 3) - Math.floor(enemy / 3);
-  const col = player % 3 - enemy % 3;
-  enemy += Math.abs(row) >= Math.abs(col) ? Math.sign(row) * 3 : Math.sign(col);
+  const row = Math.floor(player / zooColumns) - Math.floor(enemy / zooColumns);
+  const col = player % zooColumns - enemy % zooColumns;
+  enemy += Math.abs(row) >= Math.abs(col) ? Math.sign(row) * zooColumns : Math.sign(col);
   collision();
   showPieces();
 }, 2600);
@@ -194,7 +202,7 @@ function startRound(focus) {
   cursor = 0;
   active = true;
   player = 0;
-  enemy = 11;
+  enemy = zooLastCell;
   grace = 2;
   setPaused(false);
   next.hidden = true;
@@ -298,7 +306,7 @@ function chooseMode(value) {
   byId("zoo").setAttribute("aria-pressed", String(mode === "zoo"));
   byId("math").setAttribute("aria-pressed", String(mode === "math"));
   byId("topic").textContent = mode === "zoo"
-    ? "Tres rondas sobre mamíferos, parásitos externos y observación del animal."
+    ? "Tablero de 6 × 5. Tres rondas sobre mamíferos, parásitos externos y observación del animal."
     : "Tres rondas de múltiplos de 2, 5 y 19.";
   restart(false);
 }

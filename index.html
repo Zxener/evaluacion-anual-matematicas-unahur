@@ -40,12 +40,12 @@ main.shell{padding:46px 0 64px}.layout{display:grid;grid-template-columns:225px 
 <details><summary>Múltiplos de 19</summary><p>Usá la tabla o dividí por 19. Los primeros positivos son 19, 38, 57, 76 y 95.</p></details>
 <details><summary>Aplicación en el vivero</summary><p>Si cada bandeja tiene 19 cavidades y hay 95 plantines, llenás 5 bandejas completas. En cambio, 100 plantines llenan 5 bandejas y sobran 5.</p></details></section>
 <section class="panel" id="practica"><div class="kicker">Juego de práctica</div><h2>Elegí qué practicar</h2><div class="actions" role="group" aria-label="Tema del tablero"><button id="zoo" class="btn secondary mode" aria-pressed="true">Zoología y Sanidad Animal</button><button id="math" class="btn secondary mode" aria-pressed="false">Múltiplos</button></div><div id="settings" class="settings"><label for="zoo-topic">Tema del juego<select id="zoo-topic"><option value="all">Todos los temas</option><option value="animals">Clasificación de animales</option><option value="parasites">Parásitos externos</option><option value="care">Observación y cuidados</option></select></label><label for="hunter-speed">Velocidad del cazador<select id="hunter-speed"><option value="slow">Tranquila</option><option value="normal" selected>Clásica</option><option value="fast">Rápida</option></select></label></div><p class="hint" id="topic"></p>
-<div id="briefing" class="arcade"><h3>Patrulla zoológica</h3><p>Mové a la exploradora y recolectá las respuestas correctas para sumar puntos. Una respuesta incorrecta o un choque con el cazador te cuesta una vida.</p><div class="cast"><span><i class="sprite" aria-hidden="true"></i> Exploradora</span><span><i class="sprite rival" aria-hidden="true"></i> Cazador</span></div><button type="button" class="btn" id="play">Empezar partida</button></div>
+<div id="briefing" class="arcade"><h3>Patrulla zoológica</h3><p>Hacé clic en una casilla vecina para moverte. Hacé clic en la casilla de la exploradora para recolectar y sumar puntos si la respuesta es correcta. Una respuesta incorrecta o un choque con el cazador te cuesta una vida.</p><div class="cast"><span><i class="sprite" aria-hidden="true"></i> Exploradora</span><span><i class="sprite rival" aria-hidden="true"></i> Cazador</span></div><button type="button" class="btn" id="play">Empezar partida</button></div>
 <div id="playfield" hidden>
 <p class="muted" id="controls"></p>
 <p class="rule" id="rule"></p><div class="stats"><span>Ronda <b id="round"></b></span><span>Puntos <b id="score"></b></span><span>Vidas <b id="lives"></b></span><span>Restan <b id="left"></b></span></div>
 <div class="board" id="board" role="group" aria-label="Casillas del tablero" aria-describedby="controls rule"></div>
-<div id="arcade-controls" class="actions controls" aria-label="Controles táctiles"><button class="btn secondary" data-move="left" aria-label="Izquierda">←</button><button class="btn secondary" data-move="up" aria-label="Arriba">↑</button><button class="btn secondary" data-move="down" aria-label="Abajo">↓</button><button class="btn secondary" data-move="right" aria-label="Derecha">→</button><button class="btn" id="collect">Recolectar</button><button class="btn secondary" id="pause">Pausar</button></div>
+<div id="arcade-controls" class="actions controls"><button class="btn secondary" id="pause">Pausar</button></div>
 <p class="message" id="feedback" role="status"></p><div class="actions"><button id="next" class="btn" hidden>Siguiente ronda</button><button id="restart" class="btn secondary">Reiniciar partida</button></div></div></section>
 </div></div></main>
 <footer><div class="shell">Matemáticas · UNAHUR</div></footer>
@@ -171,21 +171,16 @@ function collision() {
   else finish("El cazador te alcanzó. Fin de partida. Puntaje: " + score + ".", false);
   return true;
 }
-function move(direction) {
-  if (!active || paused) return;
-  const row = Math.floor(player / zooColumns);
-  const col = player % zooColumns;
-  const offset = {left: col > 0 ? -1 : 0, right: col < zooColumns - 1 ? 1 : 0, up: row > 0 ? -zooColumns : 0, down: row < zooRows - 1 ? zooColumns : 0};
-  player += offset[direction];
+function moveTo(index) {
+  const rows = Math.abs(Math.floor(player / zooColumns) - Math.floor(index / zooColumns));
+  const columns = Math.abs(player % zooColumns - index % zooColumns);
+  if (rows + columns !== 1) {
+    feedback.textContent = "Elegí una casilla vecina en horizontal o vertical.";
+    return;
+  }
+  player = index;
   collision();
   showPieces();
-  const cell = cells[player];
-  cell.focus({preventScroll:true});
-  const left = cell.offsetLeft;
-  if (left < board.scrollLeft) board.scrollLeft = left;
-  if (left + cell.offsetWidth > board.scrollLeft + board.clientWidth) {
-    board.scrollLeft = left + cell.offsetWidth - board.clientWidth;
-  }
 }
 function setPaused(value) {
   paused = value;
@@ -217,10 +212,6 @@ function revealGame() {
 }
 byId("play").addEventListener("click", revealGame);
 byId("pause").addEventListener("click", () => { if (active) setPaused(!paused); });
-byId("collect").addEventListener("click", () => { if (active && !paused) cells[player].click(); });
-byId("arcade-controls").querySelectorAll("[data-move]").forEach(button => {
-  button.addEventListener("click", () => move(button.dataset.move));
-});
 function update() {
   byId("round").textContent = (round + 1) + " / " + roundCount();
   byId("score").textContent = score;
@@ -268,8 +259,8 @@ function startRound(focus) {
     }
     cell.addEventListener("click", () => {
       if (mode === "zoo") {
-        if (!active || paused || index !== player) return;
-        if (collision()) { showPieces(); return; }
+        if (!active || paused) return;
+        if (index !== player) { moveTo(index); return; }
       }
       mark(cell, number, correct.includes(number), challenge);
       if (mode === "zoo") showPieces();
@@ -288,8 +279,8 @@ function finish(message, advance) {
   next.hidden = !advance;
 }
 function mark(cell, n, correct, challenge) {
-  if (!active || cell.hasAttribute("aria-disabled")) return;
-  cell.setAttribute("aria-disabled", "true");
+  if (!active || cell.classList.contains("good") || cell.classList.contains("bad")) return;
+  if (mode !== "zoo") cell.setAttribute("aria-disabled", "true");
   const explanation = challenge.explanation ? challenge.explanation(n) : challenge.tip;
   if (correct) {
     cell.classList.add("good");
@@ -311,17 +302,7 @@ function mark(cell, n, correct, challenge) {
   }
 }
 board.addEventListener("keydown", event => {
-  const direction = {ArrowLeft:"left", ArrowRight:"right", ArrowUp:"up", ArrowDown:"down"}[event.key];
-  if (mode === "zoo") {
-    if (direction) {
-      event.preventDefault();
-      move(direction);
-    } else if (event.key === " " || event.key === "Enter") {
-      event.preventDefault();
-      if (active && !paused) cells[player].click();
-    }
-    return;
-  }
+  if (mode === "zoo") return;
   const columns = 6;
   const moves = {ArrowLeft: -1, ArrowRight: 1, ArrowUp: -columns, ArrowDown: columns};
   const step = moves[event.key];
@@ -345,7 +326,7 @@ function chooseMode(value) {
   byId("briefing").hidden = mode !== "zoo";
   byId("playfield").hidden = mode === "zoo";
   byId("arcade-controls").hidden = mode !== "zoo";
-  byId("controls").textContent = mode === "zoo" ? "Movete con las flechas y recolectá con Espacio o Enter. En el celular, usá los botones debajo del tablero." : "Tocá las casillas correctas o movete con las flechas y marcá con Espacio o Enter.";
+  byId("controls").textContent = mode === "zoo" ? "Hacé clic en una casilla vecina para moverte y en la casilla de la exploradora para recolectar. En el celular, tocá las casillas." : "Tocá las casillas correctas o movete con las flechas y marcá con Espacio o Enter.";
   byId("zoo").setAttribute("aria-pressed", String(mode === "zoo"));
   byId("math").setAttribute("aria-pressed", String(mode === "math"));
   byId("topic").textContent = mode === "zoo"
